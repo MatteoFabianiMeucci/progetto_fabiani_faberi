@@ -15,6 +15,7 @@
     <div>
         <?php if(!$_SESSION["isLogged"]):?>
             <a href="./login.php">login</a>
+            <a href="./sign_up.php">sign up</a>
         <?php else:?>
             <a href="">profilo</a>
             <a href="">pacchetti</a>

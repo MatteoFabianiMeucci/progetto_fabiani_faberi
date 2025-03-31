@@ -14,7 +14,7 @@
             header("Location: http://localhost/progetto_fabiani_faberi/pages/");
     ?>
     <div>
-        <form action="" method="post">
+        <form action="./autenticazione.php" method="post">
         <label><b>Digita le credenziali del tuo account</b></label>
             <br> 
             <label>Username</label>
