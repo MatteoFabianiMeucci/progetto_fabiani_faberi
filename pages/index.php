@@ -17,10 +17,10 @@
             <a href="./login.php">login</a>
             <a href="./sign_up.php">sign up</a>
         <?php else:?>
-            <a href="">profilo</a>
-            <a href="">pacchetti</a>
-            <a href="">carte</a>
-            <a href="">lotte</a>
+            <a href="./profilo.php">profilo</a>
+            <a href="./pacchetti.php">pacchetti</a>
+            <a href="./carte">carte</a>
+            <!--<a href="">lotte</a>-->
         <?php endif;?>
     <!--DA AGGIUNGERE: CARDS (pacchetti, carte, lotte)-->
     </div>
