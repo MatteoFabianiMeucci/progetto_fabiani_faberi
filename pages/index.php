@@ -16,6 +16,7 @@
             <a href="./login.php">login</a>
             <a href="./sign_up.php">sign up</a>
         <?php else:?>
+            <p>Benvenuto, <?=$_SESSION["username"]?>!</p>
             <a href="./profilo.php">profilo</a>
             <a href="./pacchetti.php">pacchetti</a>
             <a href="./carte">carte</a>
