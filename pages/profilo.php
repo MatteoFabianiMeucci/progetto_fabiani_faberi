@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <?php
+        require_once("inizializzazione_sessione.php");
+    ?>
+    <p>Username: <?=$_SESSION["username"]?></p>
+    <a href="./carte.php">Le tue carte</a>
 </body>
 </html>

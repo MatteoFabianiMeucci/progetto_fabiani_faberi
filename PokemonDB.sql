@@ -4,7 +4,7 @@ USE PokemonDB;
 CREATE TABLE Utenti (
     Id INT PRIMARY KEY AUTO_INCREMENT,
     Username VARCHAR(30) NOT NULL,
-    Password VARCHAR(30) NOT NULL,
+    Password VARCHAR(64) NOT NULL,
     IsAdmin BOOL
 );
 
