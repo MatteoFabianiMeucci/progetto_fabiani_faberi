@@ -155,7 +155,8 @@ INSERT INTO Attacchi(Nome, Danno, Tipo) VALUES
 ('Sputaveleno', 20, 6);
 
 INSERT INTO Pacchetti(Nome, Immagine) VALUES
-(Ossidiana Infuocata, ../images/packs/01),
+('Ossidiana Infuocata', ../images/packs/01),
+('151', ../images/packs/02), -- https://vivatcg.com/categoria-prodotto/carte-singole/carte-singole-scarlatto-e-violetto/carte-singole-151/?jsf=woocommerce-archive&pagenum=3
 ;
 
 INSERT INTO Tipo(Tipo) VALUES
