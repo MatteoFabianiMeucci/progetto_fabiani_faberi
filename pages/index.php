@@ -8,7 +8,6 @@
 <body>
     <?php
         require_once("./connessione.php");
-        session_start();
         require_once("./inizializzazione_sessione.php");
     ?>
     <!-- DA AGGIUNGERE: Navabar - menu dropdown(login, pacchetti, carte, lotte)-->
@@ -20,6 +19,7 @@
             <a href="./profilo.php">profilo</a>
             <a href="./pacchetti.php">pacchetti</a>
             <a href="./carte">carte</a>
+            <a href="./logout.php">logout</a>
             <!--<a href="">lotte</a>-->
         <?php endif;?>
     <!--DA AGGIUNGERE: CARDS (pacchetti, carte, lotte)-->

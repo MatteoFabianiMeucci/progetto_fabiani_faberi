@@ -1,6 +1,5 @@
     <?php
         require_once("./connessione.php");
-        session_start();
         require_once("./inizializzazione_sessione.php");
            
         if($_SESSION["isLogged"])
