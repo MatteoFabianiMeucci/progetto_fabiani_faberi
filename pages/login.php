@@ -7,7 +7,6 @@
 </head>
 <body>
     <?php
-        session_start();
         require_once("./inizializzazione_sessione.php");
            
         if($_SESSION["isLogged"])
@@ -24,6 +23,9 @@
             <label>Password</label>
             <br>
             <input type="text" name = "password" required>
+            <br>
+            <label>Accesso come admin</label>
+            <input type="checkbox" name="admin">
             <br>
             <a href="sign_up.php">Non hai un account?</a>
             <br>
