@@ -9,8 +9,19 @@
 <body>
     <?php
         require_once("inizializzazione_sessione.php");
+        if(!$_SESSION['isLogged'])
+            header("Location: http://localhost/progetto_fabiani_faberi/pages/");
+        
+        
     ?>
-    <p>Username: <?=$_SESSION["username"]?></p>
+    <p>Username: <?=$_SESSION["username"]?> <span><a href="form_new_username.php">edit</a></span></p> 
+    
+    <?php if($_SESSION["isAdmin"]): ?>
+        <p>Ruolo: Amministratore</p>
+    <?php else: ?>
+        <p>Ruolo: Utente</p>
+    <?php endif; ?>
+    
     <a href="./carte.php">Le tue carte</a>
 </body>
 </html>
