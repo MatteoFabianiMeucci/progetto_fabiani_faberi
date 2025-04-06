@@ -3,7 +3,6 @@
     require_once("./inizializzazione_sessione.php");
     if (!isset($_POST["username"]) || !$_SESSION["isLogged"])
         header("Location: http://localhost/progetto_fabiani_faberi/pages/");
-    //$current_username = $_SESSION["username"];
     $username = $_POST["username"];
 
     $query = "SELECT * FROM Utenti WHERE Username = :username";

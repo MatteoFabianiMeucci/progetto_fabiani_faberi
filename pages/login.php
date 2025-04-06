@@ -19,6 +19,9 @@
             <?php if(isset($_GET['err']) && $_GET['err'] == 404): ?>
                 <label><b>!!! Account non trovato, ritenta !!!</b></label>
                 <br><br><br>
+            <?php elseif(isset($_GET['err']) && $_GET['err'] == 403): ?>
+                <label><b>!!! Devi prima fare il login !!!</b></label>
+                <br><br><br>
             <?php endif; ?>
             
         <label><b>Digita le credenziali del tuo account</b></label>
@@ -29,7 +32,7 @@
             <br>
             <label>Password</label>
             <br>
-            <input type="text" name = "password" required>
+            <input type="password" name = "password" required>
             <br>
             <label>Accesso come admin</label>
             <input type="checkbox" name="admin">

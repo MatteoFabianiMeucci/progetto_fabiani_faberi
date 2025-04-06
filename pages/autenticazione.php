@@ -22,7 +22,6 @@
         $result->bindValue(":password", $password);
         $result->execute();
         $result = $result->fetchAll(PDO::FETCH_ASSOC);
-        ;
         
         if(count($result) == 1){
             $_SESSION['isLogged'] = true;

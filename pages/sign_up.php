@@ -27,7 +27,7 @@
             <br>
             <label>Password</label>
             <br>
-            <input type="text" name = "password" required>
+            <input type="password" name = "password" required>
             <br>
             <br>
             <input type="submit" value="Invia">

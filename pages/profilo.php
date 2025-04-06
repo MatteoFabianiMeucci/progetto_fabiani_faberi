@@ -10,7 +10,7 @@
     <?php
         require_once("inizializzazione_sessione.php");
         if(!$_SESSION['isLogged'])
-            header("Location: http://localhost/progetto_fabiani_faberi/pages/");
+            header("Location: http://localhost/progetto_fabiani_faberi/pages/login.php?err=403");
         
         
     ?>
@@ -18,6 +18,7 @@
     
     <?php if($_SESSION["isAdmin"]): ?>
         <p>Ruolo: Amministratore</p>
+        <a href="">Elimina utente</a> <!--DA IMPLEMENTARE -->
     <?php else: ?>
         <p>Ruolo: Utente</p>
     <?php endif; ?>
