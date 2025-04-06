@@ -11,9 +11,16 @@
            
         if($_SESSION["isLogged"])
             header("Location: http://localhost/progetto_fabiani_faberi/pages/");
+    
+        
     ?>
     <div>
         <form action="./autenticazione.php" method="post">
+            <?php if(isset($_GET['err']) && $_GET['err'] == 404): ?>
+                <label><b>!!! Account non trovato, ritenta !!!</b></label>
+                <br><br><br>
+            <?php endif; ?>
+            
         <label><b>Digita le credenziali del tuo account</b></label>
             <br> 
             <label>Username</label>
@@ -32,6 +39,7 @@
             <br>
             <input type="submit" value="Invia">
         </form>
+        <a href="./index.php">torna alla home</a>
     </div>
 </body>
 </html>

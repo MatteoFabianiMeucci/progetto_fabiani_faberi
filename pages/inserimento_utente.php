@@ -24,5 +24,5 @@
             $result->execute();
             header("Location: http://localhost/progetto_fabiani_faberi/pages/");
         }else
-            header("Location: http://localhost/progetto_fabiani_faberi/pages/sign_up.php");
+            header("Location: http://localhost/progetto_fabiani_faberi/pages/sign_up.php?err=403");
     ?>

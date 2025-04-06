@@ -23,5 +23,7 @@
     <?php endif; ?>
     
     <a href="./carte.php">Le tue carte</a>
+    <br>
+    <a href="./index.php">torna alla home</a>
 </body>
 </html>

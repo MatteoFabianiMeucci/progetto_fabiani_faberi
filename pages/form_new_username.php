@@ -15,14 +15,21 @@
     <div>
         <form action="./update_username.php" method="post">
         <label><b>Digita il nuovo username</b></label>
-            <br> 
+            <br>
+            <br>
             <label>Username</label>
             <br>
             <input type="text" name = "username" required>
+
+            <?php if(isset($_GET['err']) && $_GET['err'] == 403): ?>
+                <label><b>!!! Username gia' utilizzato, ritenta !!!</b></label>
+            <?php endif; ?>
+
             <br>
             <br>
             <input type="submit" value="Invia">
         </form>
+        <a href="./index.php">torna alla home</a>
     </div>
 </body>
 </html>

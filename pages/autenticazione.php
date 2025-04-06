@@ -31,6 +31,6 @@
             $_SESSION['username'] = $result[0]["Username"];
             header("Location: http://localhost/progetto_fabiani_faberi/pages/");
         } else{
-            header("Location: http://localhost/progetto_fabiani_faberi/pages/login.php");
+            header("Location: http://localhost/progetto_fabiani_faberi/pages/login.php?err=404");
         }
 ?>
