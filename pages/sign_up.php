@@ -14,6 +14,11 @@
     ?>
     <div>
         <form action="./inserimento_utente.php" method="post">
+        <?php if(isset($_GET['err']) && $_GET['err'] == 403): ?>
+            <label><b>!!! Username gia' utilizzato, ritenta !!!</b></label>
+            <br><br><br>
+        <?php endif; ?>
+        
         <label><b>Inserisci i dati dell'account da creare</b></label>
             <br> 
             <label>Username</label>
@@ -22,11 +27,12 @@
             <br>
             <label>Password</label>
             <br>
-            <input type="text" name = "password" required>
+            <input type="password" name = "password" required>
             <br>
             <br>
             <input type="submit" value="Invia">
         </form>
+        <a href="./index.php">torna alla home</a>
     </div>
 </body>
 </html>
