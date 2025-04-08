@@ -18,9 +18,13 @@
         <?php else:?>
             <p>Benvenuto, <?=$_SESSION["username"]?>!</p>
             <a href="./profilo.php">profilo</a>
-            <a href="./pacchetti.php">pacchetti</a>
-            <a href="./carte">carte</a>
             <a href="./logout.php">logout</a>
+            <?php if(!$_SESSION["isAdmin"]):?>
+                <a href="./pacchetti.php">pacchetti</a>
+                <a href="./carte">carte</a>
+            <?php else:?>
+                <a href="form_delete_user.php">elimina un utente</a>
+            <?php endif;?>
             <!--<a href="">lotte</a>-->
         <?php endif;?>
     <!--DA AGGIUNGERE: CARDS (pacchetti, carte, lotte)-->

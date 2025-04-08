@@ -18,13 +18,12 @@
     
     <?php if($_SESSION["isAdmin"]): ?>
         <p>Ruolo: Amministratore</p>
-        <a href="">Elimina utente</a> <!--DA IMPLEMENTARE -->
+        <a href="form_delete_user.php">Elimina utente</a> <!--DA IMPLEMENTARE -->
     <?php else: ?>
         <p>Ruolo: Utente</p>
+        <a href="./carte.php">Le tue carte</a>
+        <br>
+        <a href="./index.php">torna alla home</a>
     <?php endif; ?>
-    
-    <a href="./carte.php">Le tue carte</a>
-    <br>
-    <a href="./index.php">torna alla home</a>
 </body>
 </html>
