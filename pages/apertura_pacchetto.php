@@ -8,7 +8,7 @@
         header("Location: http://localhost/progetto_fabiani_faberi/pages/pacchetti.php");
     else{
         $id = $_POST["id_pacchetto"];
-        $query = "SELECT Carte.Id Id, Carte.Immagine Immagine FROM Pacchetti JOIN Carte ON (Carte.Pacchetto = Pacchetti.Id) WHERE Pacchetti.Id = :id";
+        $query = "SELECT Carte.Id Id, Carte.Immagine Immagine, Carte.Nome Nome FROM Pacchetti JOIN Carte ON (Carte.Pacchetto = Pacchetti.Id) WHERE Pacchetti.Id = :id";
         $result = $connection->prepare($query);
         $result->bindValue(":id", $id);
         $result->execute();
