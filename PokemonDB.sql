@@ -33,12 +33,13 @@ CREATE TABLE Carte (
     PS INT NOT NULL,
     Tipo INT,
     Immagine VARCHAR(60),
-    Debolezza VARCHAR(15),
+    Debolezza INT,
     Pacchetto INT,
     Attacco INT,
     FOREIGN KEY (Tipo) REFERENCES Tipo(Id),
     FOREIGN KEY (Pacchetto) REFERENCES Pacchetti(Id),
-    FOREIGN KEY (Attacco) REFERENCES Attacchi(Id)
+    FOREIGN KEY (Attacco) REFERENCES Attacchi(Id),
+    FOREIGN KEY (Debolezza) REFERENCES Tipo(Id)
 );
 
 CREATE TABLE Carte_Possedute (
@@ -73,47 +74,19 @@ CREATE TABLE Carte_Lotte (
     FOREIGN KEY (Id_lotta) REFERENCES Lotte(Id)
 );
 
+INSERT INTO Tipo(Tipo) VALUES
+('Erba'),
+('Fuoco'),
+('Elettro'),
+('Lotta'),
+('Psico'),
+('Oscurità'),
+('Acqua');
 
-INSERT INTO Carte(Nome, PS, Tipo, Immagine, Debolezza, Pacchetto, Attacco) VALUES
-('Decidueye Ex', 320, 1, '../images/cards/01', 2, 1, 1),
-('Toedscruel Ex', 270, 1, '../images/cards/02', 2, 1, 2),
-('Victini Ex', 190, 2, '../images/cards/03', 7, 1, 3),
-('Eiscue Ex', 210, 2, '../images/cards/04', 7, 1, 4),
-('Tyranitar Ex', 340, 3, '../images/cards/05', 4, 1, 5),
-('Pawmot Ex', 300, 3, '../images/cards/06', 4, 1, 6),
-('Clefable Ex', 260, 5, '../images/cards/07', 6, 1, 7),
-('Houndstone Ex', 260, 5, '../images/cards/08', 6, 1, 8),
-('Klawf Ex', 220, 4, '../images/cards/09', 1, 1, 9),
-('Koraidon Ex', 230, 4, '../images/cards/10', 5, 1, 10),
-('Charizard Ex', 330, 6, '../images/cards/11', 1, 1, 11),
-('Houndoom Ex', 270, 6, '../images/cards/12', 1, 1, 12),
-('Oddish', 50, 1, '../images/cards/13', 2, 1, 13),
-('Bounsweet', 60, 1 , '../images/cards/14', 2, 1, 13),
-('Gloom', 90, 1, '../images/cards/15', 2, 1, 14),
-('Combee', 50, 1, '../images/cards/16', 2, 1, 15),
-('Charmander', 60, 2, '../images/cards/17', 1, 1, 16),
-('Vulpix', 60, 2, '../images/cards/18', 1, 1, 17),
-('Ninetales', 100, 2, '../images/cards/19', 1, 1, 18),
-('Litwick', 60, 2, '../images/cards/20', 1, 1, 19)
-('Lapras', 200, 7, '../images/cards/21', 2, 1, 20),
-('Tympole', 60, 7, '../images/cards/22', 2, 1, 21),
-('Froakie', 60, 7, '../images/cards/23', 2, 1, 22),
-('Wigglet', 60, 7, '../images/cards/24', 2, 1, 23),
-('Magnemite', 50, 3, '../images/cards/25', 4, 1, 24),
-('Tynamo', 40, 3, '../images/cards/26', 4, 1, 25),
-('Toxel', 60, 3, '../images/cards/27', 4, 1, 26),
-('Tadbulb', 60, 3, '../images/cards/28', 4, 1, 27),
-('Cleffa', 50, 5, '../images/cards/29', 4, 1, 28),
-('Togepi', 50, 5, '../images/cards/30', 4, 1, 29),
-('Togetic', 100, 5, '../images/cards/31', 4, 1, 30),
-('Mawile', 130, 6, '../images/cards/32', 4, 1, 31),
-('Darkrai', 280, 6, '../images/cards/33', 5, 1, 32),
-('Inkay', 60, 6, '../images/cards/34', 4, 1, 33),
-('Diglett', 60, 4, '../images/cards/35', 2, 1, 34),
-('Dugtrio', 100, 4, '../images/cards/36', 2, 1, 35),
-('Nosepass', 70, 4, '../images/cards/37', 2, 1, 29),
-('Bonsly', 60, 4, '../images/cards/38', 2, 1, 36),
-('Wooper', 60, 6, '../images/cards/39', 2, 1, 37);
+INSERT INTO Pacchetti(Nome, Immagine) VALUES
+('Ossidiana Infuocata', '../images/packs/01'),
+('151', '../images/packs/02') -- https://vivatcg.com/categoria-prodotto/carte-singole/carte-singole-scarlatto-e-violetto/carte-singole-151/?jsf=woocommerce-archive&pagenum=3
+;
 
 INSERT INTO Attacchi(Nome, Danno, Tipo) VALUES
 ('Freccia Implacabile', 130, 1),
@@ -154,16 +127,65 @@ INSERT INTO Attacchi(Nome, Danno, Tipo) VALUES
 ('Piagnisteo', 10, 4),
 ('Sputaveleno', 20, 6);
 
-INSERT INTO Pacchetti(Nome, Immagine) VALUES
-('Ossidiana Infuocata', ../images/packs/01),
-('151', ../images/packs/02), -- https://vivatcg.com/categoria-prodotto/carte-singole/carte-singole-scarlatto-e-violetto/carte-singole-151/?jsf=woocommerce-archive&pagenum=3
-;
+INSERT INTO Carte(Nome, PS, Tipo, Immagine, Debolezza, Pacchetto, Attacco) VALUES
+('Decidueye Ex', 320, 1, '../images/cards/01', 2, 1, 1),
+('Toedscruel Ex', 270, 1, '../images/cards/02', 2, 1, 2),
+('Victini Ex', 190, 2, '../images/cards/03', 7, 1, 3),
+('Eiscue Ex', 210, 2, '../images/cards/04', 7, 1, 4),
+('Tyranitar Ex', 340, 3, '../images/cards/05', 4, 1, 5),
+('Pawmot Ex', 300, 3, '../images/cards/06', 4, 1, 6),
+('Clefable Ex', 260, 5, '../images/cards/07', 6, 1, 7),
+('Houndstone Ex', 260, 5, '../images/cards/08', 6, 1, 8),
+('Klawf Ex', 220, 4, '../images/cards/09', 1, 1, 9),
+('Koraidon Ex', 230, 4, '../images/cards/10', 5, 1, 10),
+('Charizard Ex', 330, 6, '../images/cards/11', 1, 1, 11),
+('Houndoom Ex', 270, 6, '../images/cards/12', 1, 1, 12),
+('Oddish', 50, 1, '../images/cards/13', 2, 1, 13),
+('Bounsweet', 60, 1 , '../images/cards/14', 2, 1, 13),
+('Gloom', 90, 1, '../images/cards/15', 2, 1, 14),
+('Combee', 50, 1, '../images/cards/16', 2, 1, 15),
+('Charmander', 60, 2, '../images/cards/17', 1, 1, 16),
+('Vulpix', 60, 2, '../images/cards/18', 1, 1, 17),
+('Ninetales', 100, 2, '../images/cards/19', 1, 1, 18),
+('Litwick', 60, 2, '../images/cards/20', 1, 1, 19),
+('Lapras', 200, 7, '../images/cards/21', 2, 1, 20),
+('Tympole', 60, 7, '../images/cards/22', 2, 1, 21),
+('Froakie', 60, 7, '../images/cards/23', 2, 1, 22),
+('Wigglet', 60, 7, '../images/cards/24', 2, 1, 23),
+('Magnemite', 50, 3, '../images/cards/25', 4, 1, 24),
+('Tynamo', 40, 3, '../images/cards/26', 4, 1, 25),
+('Toxel', 60, 3, '../images/cards/27', 4, 1, 26),
+('Tadbulb', 60, 3, '../images/cards/28', 4, 1, 27),
+('Cleffa', 50, 5, '../images/cards/29', 4, 1, 28),
+('Togepi', 50, 5, '../images/cards/30', 4, 1, 29),
+('Togetic', 100, 5, '../images/cards/31', 4, 1, 30),
+('Mawile', 130, 6, '../images/cards/32', 4, 1, 31),
+('Darkrai', 280, 6, '../images/cards/33', 5, 1, 32),
+('Inkay', 60, 6, '../images/cards/34', 4, 1, 33),
+('Diglett', 60, 4, '../images/cards/35', 2, 1, 34),
+('Dugtrio', 100, 4, '../images/cards/36', 2, 1, 35),
+('Nosepass', 70, 4, '../images/cards/37', 2, 1, 29),
+('Bonsly', 60, 4, '../images/cards/38', 2, 1, 36),
+('Wooper', 60, 6, '../images/cards/39', 2, 1, 37),
+('Venusaur Ex', 330, 1, '../images/cards/40', 2, 2, 1),
+('Charizard Ex', 320, 2, '../images/cards/41', 1, 2, 1),
+('Ninetales Ex', 290, 2, '../images/cards/42', 1, 2, 1),
+('Blastoise Ex', 350, 7, '../images/cards/43', 2, 2, 1),
+('Arbok Ex', 250, 4, '../images/cards/44', 1, 2, 1),
+('Alakazam Ex', 280, 5, '../images/cards/45', 4, 2, 1),
+('Mew Ex', 250, 5, '../images/cards/46', 4, 2, 1),
+('Golem Ex', 320, 4, '../images/cards/47', 2, 2, 1),
+('Jynx Ex', 200, 6, '../images/cards/48', 4, 2, 1),
+('Zapdos Ex', 290, 3, '../images/cards/49', 1, 2, 1),
+('Bulbasaur', 60, 1, '../images/cards/50', 2, 2, 1),
+('Caterpie', 40, 1, '../images/cards/51', 2, 2, 2),
+('Butterfree', 100, 1, '../images/cards/52', 2, 2, 3),
+('Weedle', 40, 1, '../images/cards/53', 2, 2, 4),
+('Paras', 60, 1, '../images/cards/54', 2, 2, 5),
+('Charmander', 60, 2, '../images/cards/55', 1, 2, 1),
+('Vulpix', 60, 2, '../images/cards/56', 1, 2, 1),
+('Ponyta', 60, 2, '../images/cards/57', 1, 2, 1),
+('Rapidash', 100, 2, '../images/cards/58', 1, 2, 1);
 
-INSERT INTO Tipo(Tipo) VALUES
-(Erba),
-(Fuoco),
-(Elettro),
-(Lotta),
-(Psico),
-(Oscurità),
-(Acqua);
+
+
