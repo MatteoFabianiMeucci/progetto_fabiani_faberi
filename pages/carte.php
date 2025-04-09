@@ -10,13 +10,32 @@
     <div>
         <label>Filtra per:</label>
         <?php
-        require_once("inizializzazione_sessione.php");
-        require_once("./connessione.php");
-        
-            echo "<select name=\"\">
-                <option value=\"\"></option>
-            </select>"
-        ?>
+            require_once("inizializzazione_sessione.php");
+            require_once("./connessione.php");
+            $username = $_SESSION['username'];
+                $query = "describe carte";
+                $result = $connection->prepare($query);
+                $result->execute();
+                $columns = $result->fetchAll(PDO::FETCH_ASSOC);
+                echo "<form method=\"post\"  action=\"carte.php\">";
+                echo "<select name=\"\">
+                    <option name=\"NoFiltro\">Nesun Filtro</option>";
+                foreach($columns as $col){
+                    echo "<option name=\"" . $col['Field'] . "\">" . $col['Field'] . "</option>";
+                }
+                echo "</select>
+                      <input type=\"submit\">
+                      </form>";
+
+            $query = "SELECT * FROM carte /*JOIN carte_possedute ON carte.Id = carte_possedute.Id_carta JOIN utenti ON carte_possedute.id_utente = utenti.Id WHERE utenti.username = '$username'*/";
+            ?><?php
+            foreach($connection->query($query) as $row):?>
+                <img src=<?=$row['Immagine']?>> 
+            
+
+            <?php endforeach;?>
+
+    
 
 
     </div>
