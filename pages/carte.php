@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/style.css">
     <title>Document</title>
 </head>
 <body>
@@ -19,7 +20,7 @@
                 $columns = $result->fetchAll(PDO::FETCH_ASSOC);
                 echo "<form method=\"post\"  action=\"carte.php\">";
                 echo "<select name=\"\">
-                    <option name=\"NoFiltro\">Nesun Filtro</option>";
+                    <option name=\"NoFiltro\">Nessun Filtro</option>";
                 foreach($columns as $col){
                     echo "<option name=\"" . $col['Field'] . "\">" . $col['Field'] . "</option>";
                 }
@@ -30,7 +31,7 @@
             $query = "SELECT * FROM carte /*JOIN carte_possedute ON carte.Id = carte_possedute.Id_carta JOIN utenti ON carte_possedute.id_utente = utenti.Id WHERE utenti.username = '$username'*/";
             ?><?php
             foreach($connection->query($query) as $row):?>
-                <img src=<?=$row['Immagine']?>> 
+                <img class="cards" src=<?=$row['Immagine']?>> 
             
 
             <?php endforeach;?>

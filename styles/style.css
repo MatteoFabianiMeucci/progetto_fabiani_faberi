@@ -1,5 +1,11 @@
-img{
+.packs{
     width: 8vw;
+    height: 30vh;
+    margin-right: 2vw;
+}
+
+.cards{
+    width: 15vw;
     height: 30vh;
     margin-right: 2vw;
 }
