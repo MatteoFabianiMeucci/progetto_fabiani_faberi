@@ -19,26 +19,23 @@
                 $result->execute();
                 $columns = $result->fetchAll(PDO::FETCH_ASSOC);
                 echo "<form method=\"post\"  action=\"carte.php\">";
-                echo "<select name=\"\">
-                    <option name=\"NoFiltro\">Nessun Filtro</option>";
+                echo "<select name=\"\">";
                 foreach($columns as $col){
-                    echo "<option name=\"" . $col['Field'] . "\">" . $col['Field'] . "</option>";
+                    echo "<option value=\"" . $col['Field'] . "\" name=\"filtro\">" . $col['Field'] . "</option>";
                 }
                 echo "</select>
                       <input type=\"submit\">
                       </form>";
-
-            $query = "SELECT * FROM carte /*JOIN carte_possedute ON carte.Id = carte_possedute.Id_carta JOIN utenti ON carte_possedute.id_utente = utenti.Id WHERE utenti.username = '$username'*/";
-            ?><?php
-            foreach($connection->query($query) as $row):?>
-                <img class="cards" src=<?=$row['Immagine']?>> 
             
-
-            <?php endforeach;?>
-
-    
-
-
+            $query = "SELECT * FROM carte JOIN carte_possedute ON carte.Id = carte_possedute.Id_carta JOIN utenti ON carte_possedute.id_utente = utenti.Id WHERE utenti.username = :username";
+            $result = $connection->prepare($query);
+            $result->bindValue(':username', $_SESSION['username']);
+            $result->execute();
+        ?>
+        <?php
+            foreach($result->fetchAll(PDO::FETCH_ASSOC) as $row):?>
+                <img class="cards" src=<?=$row['Immagine']?>> 
+        <?php endforeach;?>
     </div>
 </body>
 </html>
