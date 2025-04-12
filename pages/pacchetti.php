@@ -18,6 +18,10 @@
     ?>
     <?php if(!isset($_SESSION['carte_pacchetto'])): ?>
         <div>
+            <?php if(isset($_GET['err']) && $_GET['err'] == 404):?>
+                <label><b>!!! Pacchetto inesistente, ritenta !!!</b></label>
+                <br>
+            <?php endif;?>
             <?php $query = "SELECT * FROM Pacchetti"; ?>
             <?php foreach ($connection->query($query) as $row):?>
                 <form action="apertura_pacchetto.php" method="post">
