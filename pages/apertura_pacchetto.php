@@ -34,8 +34,6 @@
                 break;
         }
         $carte = array();
-        $carta_ex = $result[rand($min_carta_ex,$max_carta_ex)];
-        $carte[] = $carta_ex;
         for ($i=0; $i < 5; $i++) {
             $carta_presente = false;
             $carta_comune = $result[rand($min_carta_comune, $max_carta_comune)];
@@ -50,6 +48,8 @@
                 $carte[] = $carta_comune;
             }
         }
+        $carta_ex = $result[rand($min_carta_ex,$max_carta_ex)];
+        $carte[] = $carta_ex;
         $_SESSION['carte_pacchetto'] = $carte;
         header("Location: http://localhost/progetto_fabiani_faberi/pages/pacchetti.php");  
     }
