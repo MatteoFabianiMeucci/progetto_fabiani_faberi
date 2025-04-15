@@ -21,7 +21,7 @@
             <a href="./logout.php">logout</a>
             <?php if(!$_SESSION["isAdmin"]):?>
                 <a href="./pacchetti.php">pacchetti</a>
-                <a href="./carte">carte</a>
+                <a href="./carte.php">carte</a>
             <?php else:?>
                 <a href="form_delete_user.php">elimina un utente</a>
             <?php endif;?>

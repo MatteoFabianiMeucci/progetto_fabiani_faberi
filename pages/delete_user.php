@@ -9,13 +9,14 @@
     else{
         $username = $_POST["username"];
 
-        $query = "SELECT Id FROM Utenti WHERE Username = :username";
+        $query = "SELECT Id, Email FROM Utenti WHERE Username = :username";
         $result = $connection->prepare($query);
         $result->bindValue(":username", $username);
         if($result->execute()){//ricerca dell'utente (la query viene eseguita)
             $result = $result->fetchAll(PDO::FETCH_ASSOC);
             if(count($result) == 1){//l'utente è stato trovato
                 $id = $result[0]["Id"];
+                $email = $result[0]["Email"];
                 $query = "DELETE FROM Carte_Possedute WHERE Id_utente = :id";
                 $result = $connection->prepare($query);
                 $result->bindValue(":id", $id);
@@ -29,7 +30,14 @@
                         $result = $connection->prepare($query);
                         $result->bindValue(":id", $id);
                         if($result->execute()){//delete dell'utente dal database (la query viene eseguita)
-                            header("Location: http://localhost/progetto_fabiani_faberi/pages/");
+                            $query = "INSERT INTO Email_Bannate (Email) VALUES (:email)";
+                            $result = $connection->prepare($query);
+                            $result->bindValue(":email", $email);
+                            if($result->execute()){//Ban della mail dell'utente (la query viene eseguita)
+                                header("Location: http://localhost/progetto_fabiani_faberi/pages/");
+                            }else{//la query di ban della mail dell'utente non viene eseguita(errore 500)
+                                header("Location: http://localhost/progetto_fabiani_faberi/pages/form_delete_user.php?err=500");
+                            }
                         }else{//la query di delete dell'utente non viene eseguita(errore 500)
                             header("Location: http://localhost/progetto_fabiani_faberi/pages/form_delete_user.php?err=500");
                         }

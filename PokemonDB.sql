@@ -5,6 +5,7 @@ CREATE TABLE Utenti (
     Id INT PRIMARY KEY AUTO_INCREMENT,
     Username VARCHAR(30) NOT NULL,
     Password VARCHAR(64) NOT NULL,
+    Email VARCHAR(264),
     IsAdmin BOOL
 );
 
@@ -72,6 +73,11 @@ CREATE TABLE Carte_Lotte (
     PRIMARY KEY (Id_carta, Id_lotta),
     FOREIGN KEY (Id_carta) REFERENCES Carte(Id),
     FOREIGN KEY (Id_lotta) REFERENCES Lotte(Id)
+);
+
+CREATE TABLE Email_Bannate(
+	Id INT PRIMARY KEY AUTO_INCREMENT,
+    Email VARCHAR(264)
 );
 
 INSERT INTO Tipo(Tipo) VALUES
