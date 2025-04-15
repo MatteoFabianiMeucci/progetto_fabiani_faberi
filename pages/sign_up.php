@@ -17,6 +17,9 @@
         <?php if(isset($_GET['err']) && $_GET['err'] == 403): ?>
             <label><b>!!! Username gia' utilizzato, ritenta !!!</b></label>
             <br><br><br>
+        <?php elseif (isset($_GET['err']) && $_GET['err'] == 401): ?>
+            <label><b>!!! La mail è sottoposta ad un ban !!!</b></label>
+            <br><br><br>
         <?php endif; ?>
         
         <label><b>Inserisci i dati dell'account da creare</b></label>
@@ -28,6 +31,10 @@
             <label>Password</label>
             <br>
             <input type="password" name = "password" required>
+            <br>
+            <label>Email</label>
+            <br>
+            <input type="email" name = "email" required>
             <br>
             <br>
             <input type="submit" value="Invia">
