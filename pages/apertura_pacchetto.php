@@ -16,14 +16,14 @@
         switch($id){
             case 1:
                 $min_carta_ex = 0;
-                $max_carta_ex = 11;
-                $min_carta_comune = 12;
-                $max_carta_comune = 38;
+                $max_carta_ex = 15;
+                $min_carta_comune = 16;
+                $max_carta_comune = 42;
                 break;
             case 2:
                 $min_carta_ex = 0;
-                $max_carta_ex = 9;
-                $min_carta_comune = 10;
+                $max_carta_ex = 13;
+                $min_carta_comune = 14;
                 $max_carta_comune = 18;
                 break;
             case 3:
