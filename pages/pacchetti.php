@@ -64,6 +64,8 @@
             <?php endfor;?>
         </div>
         <?php unset($_SESSION['carte_pacchetto']);?>
+        <a href="./index.php">torna alla home</a>
+        <a href="./pacchetti.php">torna ai pachetti</a>
     <?php endif; ?>
 </body>
 </html>
