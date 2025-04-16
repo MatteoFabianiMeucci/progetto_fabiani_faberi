@@ -13,7 +13,9 @@
         <?php
             require_once("inizializzazione_sessione.php");
             require_once("./connessione.php");
-
+            if(!$_SESSION["isLogged"]){
+               header("Location: http://localhost/progetto_fabiani_faberi/pages/sign_up.php");
+            }
             $username = $_SESSION['username'];
 
             //filtro per tipo
@@ -67,6 +69,7 @@
             foreach($result->fetchAll(PDO::FETCH_ASSOC) as $row):?>
                 <img class="cards" src=<?=$row['Immagine']?>> 
         <?php endforeach;?>
+            
     </div>
 </body>
 </html>
