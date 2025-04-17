@@ -9,7 +9,6 @@
 </head>
 <body>
     <div>
-        <label>Filtra per:</label>
         <?php
             require_once("inizializzazione_sessione.php");
             require_once("./connessione.php");
