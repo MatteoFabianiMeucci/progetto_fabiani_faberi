@@ -15,7 +15,7 @@
         $conditions = [];
         $params = [];
 
-        // Aggiungi i filtri solo se sono settati
+        // Aggiunta filtri solo se settati
         if (!empty($_POST['nome'])) {
             $conditions[] = "nome = :nome";
             $params[':nome'] = $_POST['nome'];
@@ -39,19 +39,18 @@
         // Query base
         $query = "SELECT * FROM carte";
 
-        // Aggiungi le condizioni se presenti
+        // Aggiunta condizioni se presenti
         if (!empty($conditions)) {
             $query .= " WHERE " . implode(" AND ", $conditions);
         }
 
-        var_dump($query);
         $result = $connection->prepare($query);
         $result->execute($params);
     ?>
-<?php
-            foreach($result->fetchAll(PDO::FETCH_ASSOC) as $row):?>
-                <img class="cards" src=<?=$row['Immagine']?>> 
-        <?php endforeach;?>
+    <?php
+        foreach($result->fetchAll(PDO::FETCH_ASSOC) as $row):?>
+            <img class="cards" src=<?=$row['Immagine']?>> 
+    <?php endforeach;?>
         
 </body>
 </html>
