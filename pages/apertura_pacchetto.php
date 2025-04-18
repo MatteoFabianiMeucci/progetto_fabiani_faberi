@@ -24,7 +24,7 @@
                 $min_carta_ex = 0;
                 $max_carta_ex = 13;
                 $min_carta_comune = 14;
-                $max_carta_comune = 22;
+                $max_carta_comune = 42;
                 break;
             case 3:
         

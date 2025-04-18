@@ -178,7 +178,7 @@ INSERT INTO Carte(Nome, PS, Tipo, Immagine, Debolezza, Pacchetto, Attacco) VALUE
 ('Bonsly', 60, 4, '../images/cards/42.webp', 2, 1, 36),
 ('Wooper', 60, 6, '../images/cards/43.webp', 2, 1, 37),
 
-('Venusaur Ex', 330, 1, '../images/cards/44.webp', 2, 2, 1),
+('Venusaur Ex', 330, 1, '../images/cards/44.webp', 2, 2, 1), -- inizio secondo pcchetto
 ('Charizard Ex', 320, 2, '../images/cards/45.webp', 1, 2, 1),
 ('Ninetales Ex', 290, 2, '../images/cards/46.webp', 1, 2, 1),
 ('Blastoise Ex', 350, 7, '../images/cards/47.webp', 2, 2, 1),
@@ -200,7 +200,28 @@ INSERT INTO Carte(Nome, PS, Tipo, Immagine, Debolezza, Pacchetto, Attacco) VALUE
 ('Charmander', 60, 2, '../images/cards/63.webp', 1, 2, 1),
 ('Vulpix', 60, 2, '../images/cards/64.webp', 1, 2, 1),
 ('Ponyta', 60, 2, '../images/cards/65.webp', 1, 2, 1),
-('Rapidash', 100, 2, '../images/cards/66.webp', 1, 2, 1);
+('Rapidash', 100, 2, '../images/cards/66.webp', 1, 2, 1),
+
+('Squirtle', 60, 7, '../images/cards/67.webp', 3, 2, 1),
+('Wartortle', 80, 7, '../images/cards/68.webp', 3, 2, 1),
+('Psyduck', 60, 7, '../images/cards/69.webp', 5, 2, 1),
+('Poliwag', 50, 7, '../images/cards/70.webp', 5, 2, 1),
+('Dugtrio', 90, 4, '../images/cards/71.webp', 1, 2, 1),
+('Mankey', 70, 4, '../images/cards/72.webp', 1, 2, 1),
+('Machop', 80, 4, '../images/cards/73.webp', 1, 2, 1),
+('Geodude', 70, 4, '../images/cards/74.webp', 1, 2, 1),
+('Abra', 50, 5, '../images/cards/75.webp', 4, 2, 1),
+('Slowpoke', 60, 5, '../images/cards/76.webp', 7, 2, 1),
+('Mewtwo', 130, 5, '../images/cards/77.webp', 6, 2, 1),
+('Drowzee', 60, 5, '../images/cards/78.webp', 4, 2, 1),
+('Pikachu', 60, 3, '../images/cards/79.webp', 1, 2, 1),
+('Jolteon', 90, 3, '../images/cards/80.webp', 1, 2, 1),
+('Electabuzz', 80, 3, '../images/cards/81.webp', 1, 2, 1),
+('Voltorb', 60, 3, '../images/cards/82.webp', 1, 2, 1),
+('Koffing', 70, 6, '../images/cards/83.webp', 2, 2, 1),
+('Grimer', 70, 6, '../images/cards/84.webp', 2, 2, 1),
+('Muk', 120, 6, '../images/cards/85.webp', 2, 2, 1),
+('Zubat', 50, 6, '../images/cards/86.webp', 3, 2, 1);
 
 
 
