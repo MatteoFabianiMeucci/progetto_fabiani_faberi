@@ -22,53 +22,49 @@
             $result = $connection->prepare($query);
             $result->execute();
             $columns = $result->fetchAll(PDO::FETCH_ASSOC);
-            echo "<form method=\"post\"  action=\"carte.php\"> 
-                    <h1>Filtra per:</h1>
-                    <label>tipo </label>
-                    <select name=\"\">";
+            echo "<form method=\"post\"  action=\"carteFiltrate.php\"> 
+                    <h1>Filtra per:</h1><br>
+                    <label>Tipo </label>";
             foreach($columns as $col){
-                echo "<option value=\"" . $col['Tipo'] . "\" name=\"tipo\">" . $col['Tipo'] . "</option>";
+                
+                echo "<input type=\"radio\" value=\"" . $col['Id'] . "\" name=\"tipo\"></input>";
+                echo  "<label>" . $col['Tipo'] . "</label>";
             }
-            echo "</select>";
 
             //filtro per debolezza
-            echo  "<label>debolezza </label>
-                    <select name=\"\">";
+            echo  "<br><label>Debolezza </label>";
             foreach($columns as $col){
-                echo "<option value=\"" . $col['Tipo'] . "\" name=\"tipo\">" . $col['Tipo'] . "</option>";
+                echo "<input type=\"radio\" value=\"" . $col['Id'] . "\" name=\"debolezza\"></input>";
+                echo  "<label>" . $col['Tipo'] . "</label>";
             }
-            echo "</select>";
-            
+    
             //filtro per pacchetto
             $query = "SELECT * FROM Pacchetti";
             $result = $connection->prepare($query);
             $result->execute();
             $columns = $result->fetchAll(PDO::FETCH_ASSOC);
             
-            echo "</select>
-                    <label>pacchetto: </label>
-                    <select name=\"\">";
+            echo  "<br><label>Pacchetto: </label>";
             foreach($columns as $col){
-                echo "<option value=\"" . $col['Nome'] . "\" name=\"pacchetto\">" . $col['Nome'] . "</option>";
+                echo "<input type=\"radio\" value=\"" . $col['Id'] . "\" name=\"pacchetto\"></input>";
+                echo  "<label>" . $col['Nome'] . "</label>";
             }
             
             //filtro per nome e per attacco
-            echo  "</select><label>nome:</label><input name=\"nome\" type=\"text\">
-                    <label>attacco:</label><input type=\"text\">
-                    <input name=\"attacco\" type=\"submit\">
+            echo  "</select><br><label>Nome:</label><input name=\"nome\" type=\"text\">
+                    <input type=\"submit\">
                     </form>";
                     
-        //visualizzazione carte possedute dall'utente loggato
-        $query = "SELECT * FROM carte JOIN carte_possedute ON carte.Id = carte_possedute.Id_carta JOIN utenti ON carte_possedute.id_utente = utenti.Id WHERE utenti.username = :username";
-        $result = $connection->prepare($query);
-        $result->bindValue(':username', $_SESSION['username']);
-        $result->execute();
+            //visualizzazione carte possedute dall'utente loggato
+            $query = "SELECT * FROM carte JOIN carte_possedute ON carte.Id = carte_possedute.Id_carta JOIN utenti ON carte_possedute.id_utente = utenti.Id WHERE utenti.username = :username";
+            $result = $connection->prepare($query);
+            $result->bindValue(':username', $_SESSION['username']);
+            $result->execute();
         ?>
         <?php
             foreach($result->fetchAll(PDO::FETCH_ASSOC) as $row):?>
                 <img class="cards" src=<?=$row['Immagine']?>> 
         <?php endforeach;?>
-            
     </div>
 </body>
 </html>
