@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte Filtrate</title>
     <link rel="stylesheet" href="../styles/style.css">
-    <title>Document</title>
 </head>
 <body>
     <?php
-    require_once("inizializzazione_sessione.php");
-            require_once("./connessione.php");
-            if(!$_SESSION["isLogged"]){
-               header("Location: http://localhost/progetto_fabiani_faberi/pages/sign_up.php");
-            }
+        require_once("inizializzazione_sessione.php");
+        require_once("connessione.php");
+
+        if (!$_SESSION["isLogged"]) {
+            header("Location: http://localhost/progetto_fabiani_faberi/pages/sign_up.php");
+        }
+
         $conditions = [];
         $params = [];
 
-        // Aggiunta filtri solo se settati
         if (!empty($_POST['nome'])) {
-            $conditions[] = "nome = :nome";
-            $params[':nome'] = $_POST['nome'];
+            $conditions[] = "nome LIKE :nome";
+            $params[':nome'] = '%' . $_POST['nome'] . '%';
         }
 
         if (!empty($_POST['tipo'])) {
@@ -38,10 +38,8 @@
             $params[':pacchetto'] = $_POST['pacchetto'];
         }
 
-        // Query base
         $query = "SELECT * FROM carte";
 
-        // Aggiunta condizioni se presenti
         if (!empty($conditions)) {
             $query .= " WHERE " . implode(" AND ", $conditions);
         }
@@ -49,10 +47,17 @@
         $result = $connection->prepare($query);
         $result->execute($params);
     ?>
-    <?php
-        foreach($result->fetchAll(PDO::FETCH_ASSOC) as $row):?>
-            <img class="cards" src=<?=$row['Immagine']?>> 
-    <?php endforeach;?>
-        
+
+    <h2>Carte trovate:</h2>
+    <?php 
+        $carte = $result->fetchAll(PDO::FETCH_ASSOC);
+        if (count($carte) === 0): 
+    ?>
+        <p>Nessuna carta trovata con i filtri selezionati.</p>
+    <?php else: ?>
+        <?php foreach ($carte as $carta): ?>
+            <img class="cards" src="<?= $carta['Immagine'] ?>" alt="Carta">
+        <?php endforeach; ?>
+    <?php endif; ?>
 </body>
 </html>
