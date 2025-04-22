@@ -201,7 +201,6 @@ INSERT INTO Carte(Nome, PS, Tipo, Immagine, Debolezza, Pacchetto, Attacco) VALUE
 ('Vulpix', 60, 2, '../images/cards/64.webp', 1, 2, 1),
 ('Ponyta', 60, 2, '../images/cards/65.webp', 1, 2, 1),
 ('Rapidash', 100, 2, '../images/cards/66.webp', 1, 2, 1),
-
 ('Squirtle', 60, 7, '../images/cards/67.webp', 3, 2, 1),
 ('Wartortle', 80, 7, '../images/cards/68.webp', 3, 2, 1),
 ('Psyduck', 60, 7, '../images/cards/69.webp', 5, 2, 1),

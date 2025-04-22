@@ -1,0 +1,51 @@
+<?php
+    require_once("inizializzazione_sessione.php");
+    require_once("./connessione.php");
+    if(!$_SESSION["isLogged"]){
+        header("Location: http://localhost/progetto_fabiani_faberi/pages/sign_up.php");
+    }
+
+    $userId = $_SESSION["id"];
+
+    // ottienimento 5 carte possedute casuali
+    if (!isset($_SESSION['scelte']) || count($_SESSION['scelte']) != 5) {
+        header("Location: http://localhost/progetto_fabiani_faberi/pages/seleziona_carte.php");
+    }
+
+    $temporaneo = implode(',', array_fill(0, count($_SESSION['scelte']), '?'));
+    $query = "SELECT Carte.Id, Carte.Nome, Carte.PS, Carte.Immagine, Carte.Tipo, Carte.Debolezza, Carte.Attacco, a.Danno
+        FROM Carte
+        JOIN Attacchi a ON Carte.Attacco = a.Id
+        WHERE Carte.Id IN ($temporaneo)";
+    $result = $connection->prepare($query);
+    $result->execute($_SESSION['scelte']);
+    $carteUtente = $result->fetchAll(PDO::FETCH_ASSOC);
+
+    if (count($carteUtente) < 1) {
+        die("Non hai carte! Aggiungine prima.");
+    }
+
+    // ottenimento 5 carte casuali dal db per il nemico
+    $stmt = $connection->query("SELECT Carte.Id, Carte.Nome, Carte.PS, Carte.Immagine, Carte.Tipo, Carte.Debolezza, Carte.Attacco, a.Danno 
+        FROM Carte
+        JOIN Attacchi a ON Carte.Attacco = a.Id
+        ORDER BY RAND()
+        LIMIT 5");
+    $carteNemico = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // crea nuova partita per l'utente loggato
+    $_SESSION['lotta_utente'] = [
+        'utente' => [
+            'attiva' => $carteUtente[0],
+            'panchina' => array_slice($carteUtente, 1),
+            'ps' => array_column($carteUtente, 'PS', 'Id'),
+        ],
+        'nemico' => [
+            'attiva' => $carteNemico[0],
+            'panchina' => array_slice($carteNemico, 1),
+            'ps' => array_column($carteNemico, 'PS', 'Id'),
+        ]
+    ];
+
+    header("Location: http://localhost/progetto_fabiani_faberi/pages/lotte.php");
+?>
