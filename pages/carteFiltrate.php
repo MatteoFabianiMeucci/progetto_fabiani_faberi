@@ -18,6 +18,33 @@
         $conditions = [];
         $params = [];
 
+        switch($_POST['carte_non_possedute']){
+            case 'possedute':
+                $conditions[] = " EXISTS (
+                    SELECT * 
+                    FROM carte 
+                    JOIN carte_possedute ON carte.Id = carte_possedute.Id_carta 
+                    JOIN utenti ON carte_possedute.id_utente = utenti.Id 
+                    WHERE utenti.username = :username
+                    AND carte.Id = c.Id
+                )";
+                $params[':username'] = $_SESSION['username'];
+                break;
+            case 'mancanti':
+                $conditions[] = " NOT EXISTS (
+                    SELECT * 
+                    FROM carte 
+                    JOIN carte_possedute ON carte.Id = carte_possedute.Id_carta 
+                    JOIN utenti ON carte_possedute.id_utente = utenti.Id 
+                    WHERE utenti.username = :username
+                    AND carte.Id = c.Id
+                )";
+                $params[':username'] = $_SESSION['username'];
+                break;
+            default:
+                break;
+        }
+        
         if (!empty($_POST['nome'])) {
             $conditions[] = "nome LIKE :nome";
             $params[':nome'] = '%' . $_POST['nome'] . '%';
@@ -38,7 +65,7 @@
             $params[':pacchetto'] = $_POST['pacchetto'];
         }
 
-        $query = "SELECT * FROM carte";
+        $query = "SELECT * FROM carte c";
 
         if (!empty($conditions)) {
             $query .= " WHERE " . implode(" AND ", $conditions);

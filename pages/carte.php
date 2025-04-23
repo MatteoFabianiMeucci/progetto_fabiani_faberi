@@ -51,6 +51,14 @@
                 <?php endforeach; ?>
             </select>
 
+            <br><label>Stato di proprieta': </label>
+            <select name="carte_non_possedute">
+                <option value="">Nessun filtro</option>
+                <option value="possedute">Carte possedute</option>
+                <option value="mancanti">Carte non possedute</option>
+            </select>
+
+
             <br><label>Nome:</label>
             <input type="text" name="nome">
 
