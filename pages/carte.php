@@ -51,6 +51,10 @@
                 <?php endforeach; ?>
             </select>
 
+            <br><label>Carte non in possesso</label>
+            <input type="checkbox" name="carte_non_possedute">
+
+
             <br><label>Nome:</label>
             <input type="text" name="nome">
 
