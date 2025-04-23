@@ -24,6 +24,7 @@
                 <a href="./carte.php">carte</a>
             <?php else:?>
                 <a href="form_delete_user.php">elimina un utente</a>
+                <a href="./form_unban_email.php">Ripristina una email</a>
             <?php endif;?>
             <!--<a href="">lotte</a>-->
         <?php endif;?>
