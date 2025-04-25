@@ -25,7 +25,8 @@ CREATE TABLE Attacchi (
 CREATE TABLE Pacchetti (
     Id INT PRIMARY KEY AUTO_INCREMENT,
     Nome VARCHAR(100) NOT NULL,
-    Immagine VARCHAR(60)
+    Immagine VARCHAR(60),
+    Costo INT
 );
 
 CREATE TABLE Carte (
@@ -75,6 +76,15 @@ CREATE TABLE Carte_Lotte (
     FOREIGN KEY (Id_lotta) REFERENCES Lotte(Id)
 );
 
+CREATE TABLE Pacchetti_Aperti (
+    Id_utente INT,
+    Id_pacchetto INT,
+    Data VARCHAR(19),
+    PRIMARY KEY (Id_utente, Id_pacchetto, Data),
+    FOREIGN KEY (Id_utente) REFERENCES Utenti(Id),
+    FOREIGN KEY (Id_pacchetto) REFERENCES Pacchetti(Id)
+);
+
 CREATE TABLE Email_Bannate(
 	Id INT PRIMARY KEY AUTO_INCREMENT,
     Email VARCHAR(264)
@@ -89,9 +99,9 @@ INSERT INTO Tipo(Tipo) VALUES
 ('Oscurità'),
 ('Acqua');
 
-INSERT INTO Pacchetti(Nome, Immagine) VALUES
-('Ossidiana Infuocata', '../images/packs/01.jpg'),
-('151', '../images/packs/02.jpg') -- https://vivatcg.com/categoria-prodotto/carte-singole/carte-singole-scarlatto-e-violetto/carte-singole-151/?jsf=woocommerce-archive&pagenum=3
+INSERT INTO Pacchetti(Nome, Immagine, Costo) VALUES
+('Ossidiana Infuocata', '../images/packs/01.jpg', 10),
+('151', '../images/packs/02.jpg', 15) -- https://vivatcg.com/categoria-prodotto/carte-singole/carte-singole-scarlatto-e-violetto/carte-singole-151/?jsf=woocommerce-archive&pagenum=3
 ;
 
 INSERT INTO Attacchi(Nome, Danno, Tipo) VALUES
