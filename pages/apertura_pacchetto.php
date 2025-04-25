@@ -7,13 +7,14 @@
     elseif(!isset($_POST["id_pacchetto"]))
         header("Location: http://localhost/progetto_fabiani_faberi/pages/pacchetti.php");
     else{
-        $id = $_POST["id_pacchetto"];
+        $idPacchetto = $_POST["id_pacchetto"];
+        $idUtente = $_SESSION['id'];
         $query = "SELECT Carte.Id Id, Carte.Immagine Immagine, Carte.Nome Nome FROM Pacchetti JOIN Carte ON (Carte.Pacchetto = Pacchetti.Id) WHERE Pacchetti.Id = :id";
         $result = $connection->prepare($query);
-        $result->bindValue(":id", $id);
+        $result->bindValue(":id", $idPacchetto);
         $result->execute();
         $result = $result->fetchAll(PDO::FETCH_ASSOC);
-        switch($id){
+        switch($idPacchetto){
             case 1:
                 $min_carta_ex = 0;
                 $max_carta_ex = 15;
@@ -51,6 +52,14 @@
         $carta_ex = $result[rand($min_carta_ex,$max_carta_ex)];
         $carte[] = $carta_ex;
         $_SESSION['carte_pacchetto'] = $carte;
-        header("Location: http://localhost/progetto_fabiani_faberi/pages/pacchetti.php");  
+
+        $data = date('Y-m-d H:i:s');
+        $query = "INSERT INTO Pacchetti_Aperti(Id_utente, Id_pacchetto, Data) VALUES (:idUtente, :idPacchetto, :data)";
+        $result = $connection->prepare($query);
+        $result->bindValue(":idUtente", $idUtente);
+        $result->bindValue(":idPacchetto", $idPacchetto);
+        $result->bindValue(":data", $data);
+        $result->execute();
+        header("Location: http://localhost/progetto_fabiani_faberi/pages/pacchetti.php");
     }
 ?>

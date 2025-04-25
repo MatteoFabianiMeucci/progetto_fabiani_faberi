@@ -22,10 +22,32 @@
                 <label><b>!!! Pacchetto inesistente, ritenta !!!</b></label>
                 <br>
             <?php endif;?>
-            <?php $query = "SELECT * FROM Pacchetti"; ?>
+            <?php
+                $isPrimoPacchetto = false;
+                $query = "SELECT count(*) numPacchetti FROM pacchetti_aperti JOIN pacchetti ON (pacchetti_aperti.Id_pacchetto = pacchetti.Id) JOIN utenti ON (pacchetti_aperti.Id_utente = utenti.Id) WHERE utenti.Username = :username";
+                $result = $connection->prepare($query);
+                $result->bindValue(":username", $_SESSION['username']);
+                if($result->execute()){
+                    $result = $result->fetch(PDO::FETCH_ASSOC);
+                    $numPacchetti = $result['numPacchetti'];
+                    if($numPacchetti == 0){
+                        $isPrimoPacchetto = true;  
+                    }
+                }
+                $query = "SELECT * FROM Pacchetti"; 
+            ?>
             <?php foreach ($connection->query($query) as $row):?>
+                <?php 
+                    if($isPrimoPacchetto){
+                        $costo = 0;
+                    }else{
+                        $costo = $row['Costo'];
+                    }
+                ?>
                 <form action="apertura_pacchetto.php" method="post">
                     <img src="<?=$row['Immagine']?>" alt="" class = "packs">
+                    <br>
+                    <label for=""><b>Costo: <?=$costo?></b></label>
                     <br>
                     <input type="submit" value="Apri pacchetto!">
                     <input type="hidden" name="id_pacchetto" value = "<?=$row['Id']?>">
