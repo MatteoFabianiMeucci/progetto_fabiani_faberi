@@ -22,6 +22,43 @@
                 <label><b>!!! Pacchetto inesistente, ritenta !!!</b></label>
                 <br>
             <?php endif;?>
+            <?php 
+                $query = "SELECT sum(Premio) soldi FROM lotte_combattute JOIN lotte ON (lotte_combattute.Id_lotta = lotte.Id) WHERE lotte_combattute.IsVinta = 1 AND lotte_combattute.Id_utente = :id";
+                $result = $connection->prepare($query);
+                $result->bindValue(":id", $_SESSION['id']);
+                $result->execute();
+                $result = $result->fetch(PDO::FETCH_ASSOC);
+                $soldi_guadagnati = $result['soldi'];
+
+                $query = "SELECT sum(Costo) soldi FROM pacchetti_aperti JOIN pacchetti ON (pacchetti_aperti.Id_pacchetto = pacchetti.Id) WHERE pacchetti_aperti.Id_utente = :id";
+                $result = $connection->prepare($query);
+                $result->bindValue(":id", $_SESSION['id']);
+                $result->execute();
+                $result = $result->fetch(PDO::FETCH_ASSOC);
+                $soldi_effettivi = $soldi_guadagnati - $result['soldi'];
+
+                $query = "SELECT Id_pacchetto FROM pacchetti_aperti JOIN pacchetti ON (pacchetti_aperti.Id_pacchetto = pacchetti.Id) WHERE pacchetti_aperti.Id_utente = :id ORDER BY Data";
+                $result = $connection->prepare($query);
+                $result->bindValue(":id", $_SESSION['id']);
+                $result->execute();
+                $result = $result->fetchAll(PDO::FETCH_ASSOC);
+                if(count($result) > 0){
+                    $id_primo_pacchetto = $result[0]['Id_pacchetto'];
+                }else{
+                    $id_primo_pacchetto = -1;
+                }
+                switch ($id_primo_pacchetto) {
+                    case 1:
+                        $soldi_effettivi += 10;
+                        break;
+                    case 2:
+                        $soldi_effettivi += 15;
+                        break;
+                    default:
+                        break;
+                }
+            ?>
+            <p><b>Hai <?=$soldi_effettivi?> monete</b></p>
             <?php
                 $isPrimoPacchetto = false;
                 $query = "SELECT count(*) numPacchetti FROM pacchetti_aperti JOIN pacchetti ON (pacchetti_aperti.Id_pacchetto = pacchetti.Id) JOIN utenti ON (pacchetti_aperti.Id_utente = utenti.Id) WHERE utenti.Username = :username";
@@ -33,6 +70,8 @@
                     if($numPacchetti == 0){
                         $isPrimoPacchetto = true;  
                     }
+                }else{
+                    header("Location: http://localhost/progetto_fabiani_faberi/pages/pacchetti.php?err=500");
                 }
                 $query = "SELECT * FROM Pacchetti"; 
             ?>
@@ -49,7 +88,11 @@
                     <br>
                     <label for=""><b>Costo: <?=$costo?></b></label>
                     <br>
-                    <input type="submit" value="Apri pacchetto!">
+                    <?php if($soldi_effettivi >= $costo):?>
+                        <input type="submit" value="Apri pacchetto!">
+                    <?php else:?>
+                        <input type="submit" value="Apri pacchetto!" disabled>
+                    <?php endif;?>
                     <input type="hidden" name="id_pacchetto" value = "<?=$row['Id']?>">
                 </form>
             <?php endforeach;?>

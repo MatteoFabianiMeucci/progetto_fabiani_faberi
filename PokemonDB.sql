@@ -62,7 +62,7 @@ CREATE TABLE Lotte_Combattute (
     Id_utente INT,
     Id_lotta INT,
     Data Varchar(19),
-    Esito VARCHAR(5),
+    IsVinta BOOL,
     PRIMARY KEY (Id_utente, Id_lotta, Data),
     FOREIGN KEY (Id_utente) REFERENCES Utenti(Id),
     FOREIGN KEY (Id_lotta) REFERENCES Lotte(Id)
