@@ -26,19 +26,26 @@
                     $result = $connection->prepare($query);
                     $result->bindValue(":id", $id);
                     if($result->execute()){//delete delle lotte combattute dall'utente (la query viene eseguita)
-                        $query = "DELETE FROM Utenti WHERE Id = :id";
+                        $query = "DELETE FROM Pacchetti_Aperti WHERE Id_utente = :id";
                         $result = $connection->prepare($query);
                         $result->bindValue(":id", $id);
-                        if($result->execute()){//delete dell'utente dal database (la query viene eseguita)
-                            $query = "INSERT INTO Email_Bannate (Email) VALUES (:email)";
+                        if($result->execute()){//delete dei pacchetti aperti dall'utente (la query viene eseguita)
+                            $query = "DELETE FROM Utenti WHERE Id = :id";
                             $result = $connection->prepare($query);
-                            $result->bindValue(":email", $email);
-                            if($result->execute()){//Ban della mail dell'utente (la query viene eseguita)
-                                header("Location: http://localhost/progetto_fabiani_faberi/pages/");
-                            }else{//la query di ban della mail dell'utente non viene eseguita(errore 500)
+                            $result->bindValue(":id", $id);
+                            if($result->execute()){//delete dell'utente dal database (la query viene eseguita)
+                                $query = "INSERT INTO Email_Bannate (Email) VALUES (:email)";
+                                $result = $connection->prepare($query);
+                                $result->bindValue(":email", $email);
+                                if($result->execute()){//Ban della mail dell'utente (la query viene eseguita)
+                                    header("Location: http://localhost/progetto_fabiani_faberi/pages/");
+                                }else{//la query di ban della mail dell'utente non viene eseguita(errore 500)
+                                    header("Location: http://localhost/progetto_fabiani_faberi/pages/form_delete_user.php?err=500");
+                                }
+                            }else{//la query di delete dell'utente non viene eseguita(errore 500)
                                 header("Location: http://localhost/progetto_fabiani_faberi/pages/form_delete_user.php?err=500");
                             }
-                        }else{//la query di delete dell'utente non viene eseguita(errore 500)
+                        }else{//la query di delete dei pacchetti aperti dall'utente non viene eseguita(errore 500)
                             header("Location: http://localhost/progetto_fabiani_faberi/pages/form_delete_user.php?err=500");
                         }
                     }else{//la query di delete delle lotte combattute dall'utente non viene eseguita(errore 500)
