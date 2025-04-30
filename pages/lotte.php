@@ -6,7 +6,7 @@
                 header("Location: http://localhost/progetto_fabiani_faberi/pages/sign_up.php");
                 }
     if (!isset($_SESSION['lotta_utente'])) {
-        header("Location: http://localhost/progetto_fabiani_faberi/pages/setUpLotte.php");
+        header("Location: http://localhost/progetto_fabiani_faberi/pages/setUp_lotte.php");
     }
 
     $lotta = &$_SESSION['lotta_utente'];

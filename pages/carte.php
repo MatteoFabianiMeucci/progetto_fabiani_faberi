@@ -50,17 +50,18 @@
                     <?php if(!$_SESSION["isAdmin"]):?>
                         <li class="nav-item"><a class="nav-link" href="./pacchetti.php">Pacchetti</a></li>
                         <li class="nav-item"><a class="nav-link" href="./carte.php">Carte</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./seleziona_carte.php">Lotte</a></li>
                     <?php else:?>
                         <li class="nav-item"><a class="nav-link" href="form_delete_user.php">Elimina un utente</a></li>
                         <li class="nav-item"><a class="nav-link" href="./form_unban_email.php">Ripristina una email</a></li>
                     <?php endif;?>
-                    <!--<li class="nav-item"><a class="nav-link" href="#">Lotte</a></li>-->
+                    
                 <?php endif;?>
             </ul>
         </div>
     </div>
 
-        <form method="post" action="carteFiltrate.php">
+        <form method="post" action="carte_filtrate.php">
             <h1>Filtra le tue carte</h1><br>
 
             <label>Tipo:</label>
@@ -113,7 +114,7 @@
 
             foreach ($result->fetchAll(PDO::FETCH_ASSOC) as $carta):
         ?>
-            <img class="cards" src="<?= $carta['Immagine'] ?>">
+            <img class="displayed_cards" src="<?= $carta['Immagine'] ?>">
         <?php endforeach; ?>
     </div>
     <!-- Bootstrap JS Bundle -->

@@ -100,11 +100,11 @@
                     <?php if(!$_SESSION["isAdmin"]):?>
                         <li class="nav-item"><a class="nav-link" href="./pacchetti.php">Pacchetti</a></li>
                         <li class="nav-item"><a class="nav-link" href="./carte.php">Carte</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./seleziona_carte.php">Lotte</a></li>
                     <?php else:?>
                         <li class="nav-item"><a class="nav-link" href="form_delete_user.php">Elimina un utente</a></li>
                         <li class="nav-item"><a class="nav-link" href="./form_unban_email.php">Ripristina una email</a></li>
                     <?php endif;?>
-                    <!--<li class="nav-item"><a class="nav-link" href="#">Lotte</a></li>-->
                 <?php endif;?>
             </ul>
         </div>
@@ -118,7 +118,7 @@
         <p>Nessuna carta trovata con i filtri selezionati.</p>
     <?php else: ?>
         <?php foreach ($carte as $carta): ?>
-            <img class="cards" src="<?= $carta['Immagine'] ?>" alt="Carta">
+            <img class="displayed_cards" src="<?= $carta['Immagine'] ?>" alt="Carta">
         <?php endforeach; ?>
     <?php endif; ?>
     <!-- Bootstrap JS Bundle -->

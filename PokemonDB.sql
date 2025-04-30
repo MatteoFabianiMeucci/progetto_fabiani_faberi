@@ -191,7 +191,7 @@ INSERT INTO Carte(Nome, PS, Tipo, Immagine, Debolezza, Pacchetto, Attacco) VALUE
 ('Toedscruel Ex', 270, 1, '../images/cards/02.webp', 2, 1, 2),
 ('Victini Ex', 190, 2, '../images/cards/03.webp', 7, 1, 3),
 ('Eiscue Ex', 210, 2, '../images/cards/04.webp', 7, 1, 4),
-('Tyranitar Ex', 340, 3, '../images/cards/05.png', 4, 1, 5),
+('Tyranitar Ex', 340, 3, '../images/cards/05.webp', 4, 1, 5),
 ('Pawmot Ex', 300, 3, '../images/cards/06.webp', 4, 1, 6),
 ('Clefable Ex', 260, 5, '../images/cards/07.webp', 6, 1, 7),
 ('Houndstone Ex', 260, 5, '../images/cards/08.webp', 6, 1, 8),

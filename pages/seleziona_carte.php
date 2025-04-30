@@ -21,7 +21,7 @@ if (isset($_POST['scelte'])) {
         $errore = "Seleziona esattamente 5 carte!";
     } else {
         $_SESSION['scelte'] = $scelte;
-        header("Location: http://localhost/progetto_fabiani_faberi/pages/setUpLotte.php");
+        header("Location: http://localhost/progetto_fabiani_faberi/pages/setUp_lotte.php");
     }
 }
 ?>
@@ -31,6 +31,7 @@ if (isset($_POST['scelte'])) {
 <head>
     <meta charset="UTF-8">
     <title>Seleziona le tue carte</title>
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
 <?php
@@ -40,7 +41,7 @@ echo '<form method="post">';
 
 // ciclo sulle carte per visualizzarle tutte
 foreach ($carte as $carta) {
-    echo '<label">';
+    echo '<label class="cards">';
     echo '<img src="' . $carta['Immagine'] . '" height="100"><br>';
     echo '<input type="checkbox" name="scelte[]" value="' . $carta['Id'] . '">';
     echo $carta['Nome'] . ' (' . $carta['Danno'] . ' danni)';
@@ -50,7 +51,7 @@ foreach ($carte as $carta) {
 echo '<br><br>';
 echo '<button type="submit">Avvia lotta!</button>';
 echo '</form>';
-// style="display: inline-block; margin: 10px; text-align: center;
+
 ?>
 
 

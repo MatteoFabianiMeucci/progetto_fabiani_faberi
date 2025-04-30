@@ -5,7 +5,18 @@
 }
 
 .cards{
-    width: 15vw;
-    height: 30vh;
-    margin-right: 2vw;
+    display: inline-block; 
+    margin: 10px; 
+    text-align: center;
+}
+
+.cards img{
+    width: 13vw;
+    height: 33vh;
+}
+
+.displayed_cards{
+    width: 13vw;
+    height: 33vh;
+    margin: 1vh 1vh 0 0;
 }
