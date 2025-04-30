@@ -47,6 +47,7 @@
                 <?php else:?>
                     <li class="nav-item"><a class="nav-link" href="./profilo.php">Profilo</a></li>
                     <li class="nav-item"><a class="nav-link" href="./logout.php">Logout</a></li>
+                    <br>
                     <?php if(!$_SESSION["isAdmin"]):?>
                         <li class="nav-item"><a class="nav-link" href="./pacchetti.php">Pacchetti</a></li>
                         <li class="nav-item"><a class="nav-link" href="./carte.php">Carte</a></li>

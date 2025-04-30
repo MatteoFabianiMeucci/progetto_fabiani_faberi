@@ -22,11 +22,7 @@
     </nav>
 
     <?php if(!$_SESSION["isLogged"]): ?>
-        <div class="alert alert-warning text-center" role="alert">
-            Non sei loggato. Effettua il login per accedere a tutte le funzionalità.
-            <br>
-            Clicca sulla pokeball in alto a destra per accedere al menu.
-        </div>
+        
     <?php endif; ?>
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
@@ -42,6 +38,7 @@
                 <?php else:?>
                     <li class="nav-item"><a class="nav-link" href="./profilo.php">Profilo</a></li>
                     <li class="nav-item"><a class="nav-link" href="./logout.php">Logout</a></li>
+                    <br>
                     <?php if(!$_SESSION["isAdmin"]):?>
                         <li class="nav-item"><a class="nav-link" href="./pacchetti.php">Pacchetti</a></li>
                         <li class="nav-item"><a class="nav-link" href="./carte.php">Carte</a></li>
@@ -55,12 +52,19 @@
             </ul>
         </div>
     </div>
-
-    <?php if($_SESSION["isLogged"]): ?>
-        <div class="container mt-3 ms-0">
-            <p>Benvenuto, <?=$_SESSION["username"]?>!</p>
-        </div>
-    <?php endif; ?>
+    <div>
+        <?php if($_SESSION["isLogged"]): ?>
+            <div class="container mt-3 ms-0">
+                <p>Benvenuto, <?=$_SESSION["username"]?>!</p>
+            </div>
+            <?php else:?>
+                <div class="alert alert-warning text-center" role="alert">
+                Non sei loggato. Effettua il login per accedere a tutte le funzionalità.
+                <br>
+                Clicca sulla pokeball in alto a destra per accedere al menu.
+                </div>
+        <?php endif; ?>
+    </div>
     <!--DA AGGIUNGERE: CARDS (pacchetti, carte, lotte)-->
 
     <!-- Bootstrap JS Bundle -->
