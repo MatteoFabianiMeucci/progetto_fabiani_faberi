@@ -31,24 +31,25 @@
         $nemico['ps'][$nemico['attiva']['Id']] -= $dannoUtente;
         $utente['ps'][$utente['attiva']['Id']] -= $dannoNemico;
 
-        $messaggio = "Hai inflitto $dannoUtente danni, ne hai subiti $dannoNemico.";
+        $messaggio = "Hai usato l'attacco: " . $utente['nomeAttacco'][$utente['attiva']['Id']] . " infliggendo $dannoUtente danni. <br> Il nemico ha usato l'attacco: " . $nemico['nomeAttacco'][$nemico['attiva']['Id']] . " infliggendo $dannoNemico danni.";
+       
 
         // gestione KO
         if ($nemico['ps'][$nemico['attiva']['Id']] <= 0) {
-            $messaggio .= " KO: " . $nemico['attiva']['Nome'] . "!";
+            $messaggio .= "<br> KO: " . $nemico['attiva']['Nome'] . "!";
             if (count($nemico['panchina']) > 0) {
                 $nemico['attiva'] = array_shift($nemico['panchina']);
             } else {
-                $messaggio .= " Hai VINTO!";
+                $messaggio .= "<br> Hai VINTO!";
             }
         }
 
         if ($utente['ps'][$utente['attiva']['Id']] <= 0) {
-            $messaggio .= " KO tua carta: " . $utente['attiva']['Nome'];
+            $messaggio .= "<br> KO tua carta: " . $utente['attiva']['Nome'];
             if (count($utente['panchina']) > 0) {
                 $utente['attiva'] = array_shift($utente['panchina']);
             } else {
-                $messaggio .= " Hai PERSO!";
+                $messaggio .= "<br> Hai PERSO!";
             }
         }
     }

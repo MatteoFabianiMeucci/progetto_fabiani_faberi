@@ -13,7 +13,7 @@
     }
 
     $temporaneo = implode(',', array_fill(0, count($_SESSION['scelte']), '?'));
-    $query = "SELECT Carte.Id, Carte.Nome, Carte.PS, Carte.Immagine, Carte.Tipo, Carte.Debolezza, Carte.Attacco, a.Danno
+    $query = "SELECT Carte.Id, Carte.Nome, Carte.PS, Carte.Immagine, Carte.Tipo, Carte.Debolezza, Carte.Attacco, a.Danno, a.Nome as nomeAttacco
         FROM Carte
         JOIN Attacchi a ON Carte.Attacco = a.Id
         WHERE Carte.Id IN ($temporaneo)";
@@ -26,7 +26,7 @@
     }
 
     // ottenimento 5 carte casuali dal db per il nemico
-    $stmt = $connection->query("SELECT Carte.Id, Carte.Nome, Carte.PS, Carte.Immagine, Carte.Tipo, Carte.Debolezza, Carte.Attacco, a.Danno 
+    $stmt = $connection->query("SELECT Carte.Id, Carte.Nome, Carte.PS, Carte.Immagine, Carte.Tipo, Carte.Debolezza, Carte.Attacco, a.Danno, a.Nome as nomeAttacco 
         FROM Carte
         JOIN Attacchi a ON Carte.Attacco = a.Id
         ORDER BY RAND()
@@ -39,11 +39,13 @@
             'attiva' => $carteUtente[0],
             'panchina' => array_slice($carteUtente, 1),
             'ps' => array_column($carteUtente, 'PS', 'Id'),
+            'nomeAttacco' => array_column($carteUtente, 'nomeAttacco', 'Id')
         ],
         'nemico' => [
             'attiva' => $carteNemico[0],
             'panchina' => array_slice($carteNemico, 1),
             'ps' => array_column($carteNemico, 'PS', 'Id'),
+            'nomeAttacco' => array_column($carteNemico, 'nomeAttacco', 'Id')
         ]
     ];
 
