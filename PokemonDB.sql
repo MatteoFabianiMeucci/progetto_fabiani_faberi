@@ -124,7 +124,7 @@ INSERT INTO Attacchi(Nome, Danno, Tipo) VALUES
 ('Carica', 20, 1),
 ('Calorazione', 30, 2),
 ('Stordiraggio', 20, 2),
-('Fuocospiro', 10, 2), --20
+('Fuocospiro', 10, 2), -- 20
 ('Ventogelido', 100, 7),
 ('Avvitacoda', 10, 7),
 ('Balzoprova', 30, 7),
@@ -134,7 +134,7 @@ INSERT INTO Attacchi(Nome, Danno, Tipo) VALUES
 ('Coinvolgimento', 30, 3),
 ('Scuoti e Scarica', 20, 3),
 ('Pesca Smaniosa', 30, 5),
-('Rollazione', 20, 5), --30
+('Rollazione', 20, 5), -- 30
 ('Immersione Rapida', 40, 5),
 ('Sgranocchio Birichino', 30, 5),
 ('Ciclone Notturno', 120, 6),
@@ -164,7 +164,7 @@ INSERT INTO Attacchi(Nome, Danno, Tipo) VALUES
 ('Super Scottata', 20, 2),
 ('Tonfo', 30, 2),
 ('Girata Match', 90, 2),
-('Capocciata', 20, 7), --60
+('Capocciata', 20, 7), -- 60
 ('Attacco Rotante', 50, 7),
 ('Pistolacqua', 10, 7),
 ('Bolla', 10, 7),
@@ -174,7 +174,7 @@ INSERT INTO Attacchi(Nome, Danno, Tipo) VALUES
 ('Noccapugno', 20, 4),
 ('Psicosparo', 20, 5),
 ('Bottintesta', 20, 5),
-('Psicocolpo', 130, 5), --70
+('Psicocolpo', 130, 5), -- 70
 ('Cozzata Zen', 30, 5),
 ('Pika Pugno', 50, 3),
 ('Fulmine Combattente', 90, 3),
@@ -183,7 +183,7 @@ INSERT INTO Attacchi(Nome, Danno, Tipo) VALUES
 ('Gas Sospetto', 20, 6),
 ('Pressa Appiccicosa', 10, 6),
 ('Fangobomba', 180, 6),
-('Morso', 10, 6); --79
+('Morso', 10, 6); -- 79
 
 
 INSERT INTO Carte(Nome, PS, Tipo, Immagine, Debolezza, Pacchetto, Attacco) VALUES
