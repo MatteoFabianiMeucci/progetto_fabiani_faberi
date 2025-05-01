@@ -49,24 +49,23 @@
         </div>
     </div>
 
-    <div>
-        <form action="./update_username.php" method="post">
-        <label><b>Digita il nuovo username</b></label>
-            <br>
-            <br>
-            <label>Username</label>
-            <br>
-            <input type="text" name = "username" required>
+    <div class="container my-5">
+        <form action="./update_username.php" method="post" class="p-4 border rounded shadow-sm bg-light">
+            <h4 class="mb-4">Aggiorna il tuo username</h4>
+            
+            <div class="mb-3">
+                <label for="username" class="form-label"><b>Nuovo Username</b></label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
 
             <?php if(isset($_GET['err']) && $_GET['err'] == 403): ?>
-                <label><b>!!! Username gia' utilizzato, ritenta !!!</b></label>
+                <div class="alert alert-danger" role="alert">
+                    !!! Username già utilizzato, ritenta !!!
+                </div>
             <?php endif; ?>
 
-            <br>
-            <br>
-            <input type="submit" value="Invia">
+            <button type="submit" class="btn btn-primary w-100">Invia</button>
         </form>
-        <a href="./index.php">torna alla home</a>
     </div>
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

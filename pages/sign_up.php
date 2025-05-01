@@ -6,6 +6,7 @@
     <title>Document</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
     <?php
@@ -50,34 +51,37 @@
         </div>
     </div>
 
-    <div>
-        <form action="./inserimento_utente.php" method="post">
-        <?php if(isset($_GET['err']) && $_GET['err'] == 403): ?>
-            <label><b>!!! Username gia' utilizzato, ritenta !!!</b></label>
-            <br><br><br>
-        <?php elseif (isset($_GET['err']) && $_GET['err'] == 401): ?>
-            <label><b>!!! La mail è sottoposta ad un ban !!!</b></label>
-            <br><br><br>
-        <?php endif; ?>
-        
-        <label><b>Inserisci i dati dell'account da creare</b></label>
-            <br> 
-            <label>Username</label>
-            <br>
-            <input type="text" name = "username" required>
-            <br>
-            <label>Password</label>
-            <br>
-            <input type="password" name = "password" required>
-            <br>
-            <label>Email</label>
-            <br>
-            <input type="email" name = "email" required>
-            <br>
-            <br>
-            <input type="submit" value="Invia">
+    <div class="container my-5">
+        <form action="./inserimento_utente.php" method="post" class="p-4 border rounded shadow-sm bg-light">
+            <?php if(isset($_GET['err']) && $_GET['err'] == 403): ?>
+                <div class="alert alert-danger" role="alert">
+                    Username già utilizzato
+                </div>
+            <?php elseif (isset($_GET['err']) && $_GET['err'] == 401): ?>
+                <div class="alert alert-warning" role="alert">
+                    La mail è sottoposta ad un ban
+                </div>
+            <?php endif; ?>
+
+            <h4 class="mb-4">Inserisci i dati dell'account da creare</h4>
+            
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100">Invia</button>
         </form>
-        <a href="./index.php">torna alla home</a>
     </div>
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

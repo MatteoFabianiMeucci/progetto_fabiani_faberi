@@ -14,7 +14,7 @@
         require_once("./connessione.php");
         require_once("./inizializzazione_sessione.php");
         if(!$_SESSION["isLogged"])
-            header("Location: http://localhost/progetto_fabiani_faberi/pages/");
+            header("Location: http://localhost/progetto_fabiani_faberi/pages/login.php?err=403");
         
         
     ?>
@@ -95,7 +95,13 @@
                         break;
                 }
             ?>
-            <p><b>Hai <?=$soldi_effettivi?> monete</b></p>
+            <div class="card shadow-sm my-2 w-25 text-center">
+                <div class="card-body">
+                        <p class="card-text">
+                            <b>Pokedollari: <?=$soldi_effettivi?> <span><img src="../images/layout/currency_icon.png" alt="pokedollari" class="currency"></span></b>
+                        </p>
+                </div>
+            </div>
             <?php
                 $isPrimoPacchetto = false;
                 $query = "SELECT count(*) numPacchetti FROM pacchetti_aperti JOIN pacchetti ON (pacchetti_aperti.Id_pacchetto = pacchetti.Id) JOIN utenti ON (pacchetti_aperti.Id_utente = utenti.Id) WHERE utenti.Username = :username";
@@ -112,62 +118,81 @@
                 }
                 $query = "SELECT * FROM Pacchetti"; 
             ?>
-            <?php foreach ($connection->query($query) as $row):?>
-                <?php 
-                    if($isPrimoPacchetto){
-                        $costo = 0;
-                    }else{
-                        $costo = $row['Costo'];
-                    }
-                ?>
-                <form action="apertura_pacchetto.php" method="post">
-                    <img src="<?=$row['Immagine']?>" alt="" class = "packs">
-                    <br>
-                    <label for=""><b>Costo: <?=$costo?></b></label>
-                    <br>
-                    <?php if($soldi_effettivi >= $costo):?>
-                        <input type="submit" value="Apri pacchetto!">
-                    <?php else:?>
-                        <input type="submit" value="Apri pacchetto!" disabled>
-                    <?php endif;?>
-                    <input type="hidden" name="id_pacchetto" value = "<?=$row['Id']?>">
-                </form>
-            <?php endforeach;?>
+            <div class="container">
+                <div class="row">
+                    <?php foreach ($connection->query($query) as $row):?>
+                        <?php 
+                            if($isPrimoPacchetto){
+                                $costo = 0;
+                            }else{
+                                $costo = $row['Costo'];
+                            }
+                        ?>
+                        <div class="col-md-4 mb-4">
+                            <form action="apertura_pacchetto.php" method="post" class="text-center">
+                                <img src="<?=$row['Immagine']?>" alt="" class="packs img-fluid">
+                                <br>
+                                <label for=""><b>Costo: <?=$costo?></b></label>
+                                <br>
+                                <?php if($soldi_effettivi >= $costo):?>
+                                    <input type="submit" value="Apri pacchetto!" class="btn btn-primary">
+                                <?php else:?>
+                                    <input type="submit" value="Apri pacchetto!" class="btn btn-primary" disabled>
+                                <?php endif;?>
+                                <input type="hidden" name="id_pacchetto" value="<?=$row['Id']?>">
+                            </form>
+                        </div>
+                    <?php endforeach;?>
+                </div>
+            </div>
         </div>
     <?php else: ?>
-        <div>
-            <?php $carte = $_SESSION['carte_pacchetto']; ?>
-            <h1>CARTE TROVATE</h1>
-            <?php for($i = 0; $i < count($carte); $i++):?>
-                <div>
-                    <img src="<?=$carte[$i]['Immagine']?>" alt="" class = "cards">
-                    <?php
-                        $id_carta = $carte[$i]['Id'];
-                        $query = "SELECT * FROM Carte_Possedute WHERE Id_utente = :id_utente AND Id_carta = :id_carta";
-                        $result = $connection->prepare($query);
-                        $result->bindValue(":id_carta", $id_carta);
-                        $result->bindValue(":id_utente", $_SESSION['id']);
-                        if($result->execute()){
-                            $row = $result->fetchAll(PDO::FETCH_ASSOC);
-                            if(count($row) == 0){
-                                $query = "INSERT INTO Carte_Possedute(Id_utente, Id_carta) VALUES (:id_utente, :id_carta)";
+        <div class="container text-center">
+            <div class="row">
+                <?php $carte = $_SESSION['carte_pacchetto']; ?>
+                <h1>CARTE TROVATE</h1>
+                <?php for($i = 0; $i < count($carte); $i++):?>
+                    <div class="col-md-4 mb-4 text-center">
+                        <div>
+                            <img src="<?=$carte[$i]['Immagine']?>" alt="" class="displayed_cards img-fluid">
+                            <?php
+                                $id_carta = $carte[$i]['Id'];
+                                $query = "SELECT * FROM Carte_Possedute WHERE Id_utente = :id_utente AND Id_carta = :id_carta";
                                 $result = $connection->prepare($query);
-                                $result->bindValue(":id_utente", $_SESSION['id']);
                                 $result->bindValue(":id_carta", $id_carta);
-                                $result->execute();
-                            }else{
-                                echo "<p>Possiedi gia' ".$carte[$i]["Nome"]."</p>";
-                            }
-                        }else{
-                            header("Location: http://localhost/progetto_fabiani_faberi/pages/pacchetti.php?err=500");
-                        }
-                    ?>
-                </div>
-            <?php endfor;?>
+                                $result->bindValue(":id_utente", $_SESSION['id']);
+                                if($result->execute()){
+                                    $row = $result->fetchAll(PDO::FETCH_ASSOC);
+                                ?>
+                                    <?php if(count($row) == 0):?>
+                                        <?php
+                                        $query = "INSERT INTO Carte_Possedute(Id_utente, Id_carta) VALUES (:id_utente, :id_carta)";
+                                        $result = $connection->prepare($query);
+                                        $result->bindValue(":id_utente", $_SESSION['id']);
+                                        $result->bindValue(":id_carta", $id_carta);
+                                        $result->execute();
+                                    ?>
+                                    <?php else:?>
+                                        <div class="card shadow-sm mx-auto my-2 w-75 text-center">
+                                            <div class="card-body">
+                                                <p class="card-text">Possiedi gia' <?=$carte[$i]["Nome"]?></p>
+                                            </div>
+                                        </div>
+                                        
+                                    <?php endif;?>
+                                    <?php
+                                }else{
+                                    header("Location: http://localhost/progetto_fabiani_faberi/pages/pacchetti.php?err=500");
+                                }
+                            ?>
+                        </div>
+                    </div>
+                <?php endfor;?>
+            </div>
+            <a href="./pacchetti.php" class="btn btn-primary w-50  mb-2">torna ai pachetti</a>
         </div>
         <?php unset($_SESSION['carte_pacchetto']);?>
-        <a href="./index.php">torna alla home</a>
-        <a href="./pacchetti.php">torna ai pachetti</a>
+        
     <?php endif; ?>
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
     <?php
@@ -52,18 +54,60 @@
             </ul>
         </div>
     </div>
-    <div>
+    
         <?php if($_SESSION["isLogged"]): ?>
-            <div class="container mt-3 ms-0">
-                <p>Benvenuto, <?=$_SESSION["username"]?>!</p>
+            <div class="alert alert-success text-center" role="alert">
+                <b>Benvenuto, <?=$_SESSION["username"]?>!</b>
             </div>
             <?php else:?>
-                <div class="alert alert-warning text-center" role="alert">
-                Non sei loggato. Effettua il login per accedere a tutte le funzionalità.
-                <br>
-                Clicca sulla pokeball in alto a destra per accedere al menu.
+                <div class="alert alert-danger text-center" role="alert">
+                    Non sei loggato. Effettua il login per accedere a tutte le funzionalità.
+                    <br>
+                    Clicca sulla pokeball in alto a destra per accedere al menu.
                 </div>
         <?php endif; ?>
+    <div class = "tutorial">
+        <div class="sezione">
+            <h2>Introduzione</h2>
+            <p>Benvenuto nel nostro fantastico mondo di carte e avventure! Qui puoi:</p>
+            <ul>
+                <li>Collezionare carte uniche e straordinarie.</li>
+                <li>Partecipare a lotte epiche.</li>
+                <li>Personalizzare il tuo profilo e monitorare i tuoi progressi.</li>
+            </ul>
+            <p>Preparati a immergerti in un'esperienza incredibile!</p>
+            <img src="../images/cards/11.webp" class="displayed_cards" alt="Carta esempio">
+        </div>
+        <div class="sezione">
+            <h2>1. Come ottenere le carte</h2>
+            <p>Collezionare carte è semplice e divertente:</p>
+            <ol>
+                <li>Visita la sezione <a href="./pacchetti.php">Pacchetti</a>.</li>
+                <li>Apri un pacchetto e inizia a collezionare carte, il primo te lo regaliamo noi.</li>
+                <li>Guarda la tua collezione crescere nella pagina delle <a href="./carte.php">carte</a>!</li>
+            </ol>
+            <p>Ogni nuova carta e' un passo in più verso il collezionarle tutte!</p>
+            <img src="../images/cards/11.webp" class="displayed_cards" alt="Carta esempio">
+        </div>
+        <div class="sezione">
+            <h2>2. Come Fare le Lotte</h2>
+            <p>Le lotte sono il cuore dell'azione! Ecco come iniziare:</p>
+            <ol>
+                <li>Vai nella sezione <a href="./seleziona_carte.php">Lotte</a>.</li>
+                <li>Scegli una lotta dalla lista, seleziona le tue carte e... battaglia!</li>
+                <li>Usa strategia e abilità per vincere e ottenere ricompense.</li>
+            </ol>
+            <p>Ogni battaglia è un'esperienza unica. Completa tutte le lotte e guadagna esperienza per salire di livello e pokedollari per aprire nuovi pacchetti!</p>
+            <img src="../images/cards/11.webp" class="displayed_cards" alt="Carta esempio">
+        </div>
+        <div class="sezione">
+            <h2>Domande Frequenti (FAQ)</h2>
+            <ul>
+                <li><b>Come posso cambiare il mio username?</b> Vai sul tuo <a href="./profilo.php">profilo</a> e clicca sul tasto "edit" accanto al tuo username.</li>
+                <li><b>Dove vedo le mie statistiche?</b> Nella pagina del <a href="./profilo.php">profilo</a> puoi vedere i tuoi pokedollari e il tuo livello.</li>
+                <li><b>Come si naviga il sito?</b> Clicca sulla pokeball in alto a destra e visita le varie pagine, per tornare a quella principale basta cliccare sulla scritta "GCC pokemon pocket" in alto a sinistra.</li>
+            </ul>
+        </div>
     </div>
     <!--DA AGGIUNGERE: CARDS (pacchetti, carte, lotte)-->
 
