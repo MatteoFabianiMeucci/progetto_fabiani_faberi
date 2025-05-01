@@ -53,32 +53,40 @@
         </div>
     </div>
 
-        <form action="./autenticazione.php" method="post">
+    <div class="container my-5">
+        <form action="./autenticazione.php" method="post" class="p-4 border rounded shadow-sm bg-light">
             <?php if(isset($_GET['err']) && $_GET['err'] == 404): ?>
-                <label><b>!!! Account non trovato, ritenta !!!</b></label>
-                <br><br><br>
+                <div class="alert alert-danger" role="alert">
+                    Account non trovato
+                </div>
             <?php elseif(isset($_GET['err']) && $_GET['err'] == 403): ?>
-                <label><b>!!! Devi prima fare il login !!!</b></label>
-                <br><br><br>
+                <div class="alert alert-warning" role="alert">
+                    Devi prima fare il login
+                </div>
             <?php endif; ?>
+
+            <h4 class="mb-4 text-center">Accedi al tuo account</h4>
             
-        <label><b>Digita le credenziali del tuo account</b></label>
-            <br> 
-            <label>Username</label>
-            <br>
-            <input type="text" name = "username" required>
-            <br>
-            <label>Password</label>
-            <br>
-            <input type="password" name = "password" required>
-            <br>
-            <label>Accesso come admin</label>
-            <input type="checkbox" name="admin">
-            <br>
-            <a href="sign_up.php">Non hai un account?</a>
-            <br>
-            <br>
-            <input type="submit" value="Invia">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            
+            <div class="form-check mb-3">
+                <input type="checkbox" id="admin" name="admin" class="form-check-input">
+                <label for="admin" class="form-check-label">Accesso come admin</label>
+            </div>
+            
+            <div class="mb-3 text-center">
+                <a href="./sign_up.php" class="text-decoration-none">Non hai un account?</a>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100">Invia</button>
         </form>
     </div>
     <!-- Bootstrap JS Bundle -->

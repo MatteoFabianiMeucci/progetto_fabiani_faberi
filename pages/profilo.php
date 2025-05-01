@@ -7,7 +7,8 @@
     <title>Document</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+    <link rel="stylesheet" href="../styles/style.css">
+    </head>
 <body>
     <?php
         require_once("./inizializzazione_sessione.php");
@@ -51,50 +52,110 @@
         </div>
     </div>
 
-    <p>Username: <?=$_SESSION["username"]?> <span><a href="form_new_username.php">edit</a></span></p> 
-    
-    <?php if($_SESSION["isAdmin"]): ?>
-        <p>Ruolo: Amministratore</p>
-        <a href="./form_delete_user.php">Elimina e banna utente</a>
-        <br>
-        <a href="./form_unban_email.php">Ripristina una email</a>
-    <?php else: ?>
-        <?php
-            $query = "SELECT cast(sum(Exp) as signed) esperienza FROM lotte_combattute JOIN lotte ON (lotte_combattute.Id_lotta = lotte.Id) WHERE lotte_combattute.Id_utente = :id AND lotte_combattute.IsVinta = 1";
-            $result = $connection->prepare($query);
-            $result->bindValue(":id", $_SESSION['id']);
-            if($result->execute()){
-                $result = $result->fetch(PDO::FETCH_ASSOC);
-                $esperienza = $result['esperienza'];
-                if($esperienza == null){
-                    $esperienza = 0;
+    <div class="container my-4">
+        
+        
+        <?php if($_SESSION["isAdmin"]): ?>
+            <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Username</h5>
+                <p class="card-text">
+                    <?=$_SESSION["username"]?>
+                </p>
+            </div>
+            </div>
+            <div class = "mt-2 mb-4">
+                <a href="form_new_username.php" class="btn btn-primary w-100 mb-2">Edit username</a>
+            </div>
+            <a href="./form_delete_user.php" class="btn btn-link p-0">Elimina e banna utente</a>
+            <br>
+            <a href="./form_unban_email.php" class="btn btn-link p-0">Ripristina una email</a>
+        <?php else: ?>
+            <?php
+                $query = "SELECT cast(sum(Exp) as signed) esperienza FROM lotte_combattute JOIN lotte ON (lotte_combattute.Id_lotta = lotte.Id) WHERE lotte_combattute.Id_utente = :id AND lotte_combattute.IsVinta = 1";
+                $result = $connection->prepare($query);
+                $result->bindValue(":id", $_SESSION['id']);
+                if($result->execute()){
+                    $result = $result->fetch(PDO::FETCH_ASSOC);
+                    $esperienza = $result['esperienza'];
+                    if($esperienza == null){
+                        $esperienza = 0;
+                    }
+                    $esperienza;
+                    $livello = 1;
+                    $expPerLivello = 100;
+                    while ($esperienza >= $expPerLivello) {
+                        $esperienza -= $expPerLivello;
+                        $livello++;
+                        // Aumentiamo la difficoltà: ogni livello richiede il 20% di exp in più
+                        $expPerLivello = ceil($expPerLivello * 1.2);
+                    }
+                } else {
+                    header("Location: http://localhost/progetto_fabiani_faberi/pages/profilo.php?err=500");
                 }
-                $esperienza;
-                $livello = 1;
-                $expPerLivello = 100;
-                while ($esperienza >= $expPerLivello) {
-                    $esperienza -= $expPerLivello;
-                    $livello++;
-                    // Aumentiamo la difficoltà: ogni livello richiede il 20% di exp in più
-                    $expPerLivello = ceil($expPerLivello * 1.2);
-                }
-            }else {
-                header("Location: http://localhost/progetto_fabiani_faberi/pages/profilo.php?err=500");
-            }
-        ?>
-        <p>
-            livello:
-            <?php if(isset($_GET['err']) && $_GET['err'] == "500"):?>
-                <?="Si è verificato un problema"?>
-            <?php else: ?>
-                <?=$livello . " ($esperienza/$expPerLivello exp)"?>
-            <?php endif; ?>
-        </p>
-        <p>Ruolo: Utente</p>
-        <a href="./carte.php">Le tue carte</a>
-        <br>
-        <a href="./pacchetti.php">Apri un pacchetto</a>
-    <?php endif; ?>
+                $query = "SELECT sum(Premio) soldi FROM lotte_combattute JOIN lotte ON (lotte_combattute.Id_lotta = lotte.Id) WHERE lotte_combattute.IsVinta = 1 AND lotte_combattute.Id_utente = :id";
+                    $result = $connection->prepare($query);
+                    $result->bindValue(":id", $_SESSION['id']);
+                    $result->execute();
+                    $result = $result->fetch(PDO::FETCH_ASSOC);
+                    $soldi_guadagnati = $result['soldi'];
+
+                    $query = "SELECT sum(Costo) soldi FROM pacchetti_aperti JOIN pacchetti ON (pacchetti_aperti.Id_pacchetto = pacchetti.Id) WHERE pacchetti_aperti.Id_utente = :id";
+                    $result = $connection->prepare($query);
+                    $result->bindValue(":id", $_SESSION['id']);
+                    $result->execute();
+                    $result = $result->fetch(PDO::FETCH_ASSOC);
+                    $soldi_effettivi = $soldi_guadagnati - $result['soldi'];
+
+                    $query = "SELECT Id_pacchetto FROM pacchetti_aperti JOIN pacchetti ON (pacchetti_aperti.Id_pacchetto = pacchetti.Id) WHERE pacchetti_aperti.Id_utente = :id ORDER BY Data";
+                    $result = $connection->prepare($query);
+                    $result->bindValue(":id", $_SESSION['id']);
+                    $result->execute();
+                    $result = $result->fetchAll(PDO::FETCH_ASSOC);
+                    if(count($result) > 0){
+                        $id_primo_pacchetto = $result[0]['Id_pacchetto'];
+                    }else{
+                        $id_primo_pacchetto = -1;
+                    }
+                    switch ($id_primo_pacchetto) {
+                        case 1:
+                            $soldi_effettivi += 10;
+                            break;
+                        case 2:
+                            $soldi_effettivi += 15;
+                            break;
+                        default:
+                            break;
+                    }
+            ?>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Username</h5>
+                    <p class="card-text">
+                        <?=$_SESSION["username"]?>
+                    </p>
+                    <h5 class="card-title">Pokedollari</h5>
+                    <p class="card-text">
+                        <b><?=$soldi_effettivi?> <span><img src="../images/layout/currency_icon.png" alt="pokedollari" class="currency"></span></b>
+                    </p>
+                    <h5 class="card-title">Livello: <?=$livello?></h5>
+                    <p class="card-text">
+                        <?php if(isset($_GET['err']) && $_GET['err'] == "500"): ?>
+                            Si è verificato un problema
+                        <?php else: ?>
+                            <?="($esperienza/$expPerLivello exp)"?>
+                        <?php endif; ?>
+                    </p>
+                </div>
+            </div>
+            <div class="mt-4">
+                <a href="form_new_username.php" class="btn btn-primary w-100 mb-2">Edit username</a>
+                <a href="./carte.php" class="btn btn-secondary w-100 mb-2">Le tue carte</a>
+                <a href="./pacchetti.php" class="btn btn-secondary w-100 mb-2">Apri un pacchetto</a>
+                <a href="./seleziona_carte.php" class="btn btn-secondary w-100">Inizia una lotta</a>
+            </div>
+        <?php endif; ?>
+    </div>
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
