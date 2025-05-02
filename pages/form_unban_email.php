@@ -50,41 +50,52 @@
         </div>
     </div>
 
-    <div>
-        <form action="./unban_email.php" method="post">
-        <label><b>Digita la email da ripristinare</b></label>
-            <br>
-            <br>
-            <label>Email</label>
-            <br>
-            <input type="email" name = "email" required>
+    <div class="container my-5">
+        <form action="./unban_email.php" method="post" class="p-4 border rounded shadow-sm bg-light">
+            <h4 class="mb-4 text-center">Ripristina una email</h4>
+            
+            <div class="mb-3">
+                <label for="email" class="form-label"><b>Digita la email da ripristinare</b></label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
             
             <?php if(isset($_GET['err']) && $_GET['err'] == 404): ?>
-                <label><b>!!! Email non trovata, ritenta !!!</b></label>
+                <div class="alert alert-danger" role="alert">
+                    !!! Email non trovata, ritenta !!!
+                </div>
             <?php elseif(isset($_GET['err']) && $_GET['err'] == 500): ?>
-                <label><b>!!! Si è verificato un problema, ritenta !!!</b></label>
+                <div class="alert alert-warning" role="alert">
+                    !!! Si è verificato un problema, ritenta !!!
+                </div>
             <?php endif; ?>
-
-            <?php if(isset($_SESSION['emails'])):?>
-                <?php $emails = $_SESSION['emails'];?>
-                <table>
-                    <th>EMAIL</th>
-                    <?php for($i = 0; $i < count($emails); $i++):?>
-                        <tr>
-                            <td><?= $emails[$i]['Email']?></td>
-                        </tr>
-                    <?php endfor;?>
-                </table>
-                
-                <?php unset($_SESSION['emails']);?>
-            <?php endif;?>
-
-
-            <br>
-            <br>
-            <input type="submit" value="Invia">
+            
+            <?php if(isset($_SESSION['emails'])): ?>
+                <?php $emails = $_SESSION['emails']; ?>
+                <div class="mt-4">
+                    <h5 class="text-center">Email Bannate</h5>
+                    <table class="table table-bordered bg-white">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($emails as $email): ?>
+                                <tr>
+                                    <td><?= $email['Email'] ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+                <?php unset($_SESSION['emails']); ?>
+            <?php else: ?>
+                <div class="text-center my-3">
+                    <a href="./lista_email_bannate.php" class="text-decoration-none">Lista delle email bannate</a>
+                </div>
+            <?php endif; ?>
+            <button type="submit" class="btn btn-primary w-100">Invia</button>
         </form>
-        <a href="./lista_email_bannate.php">lista delle email bannate</a>
     </div>
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

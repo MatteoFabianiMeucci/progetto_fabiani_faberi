@@ -65,11 +65,11 @@
             </div>
             </div>
             <div class = "mt-2 mb-4">
-                <a href="form_new_username.php" class="btn btn-primary w-100 mb-2">Edit username</a>
+                <a href="./form_delete_user.php" class="btn btn-primary w-100 mb-2">Elimina e banna utente</a>
+                <br>
+                <a href="./form_unban_email.php" class="btn btn-primary w-100 mb-2">Ripristina una email</a>
             </div>
-            <a href="./form_delete_user.php" class="btn btn-link p-0">Elimina e banna utente</a>
-            <br>
-            <a href="./form_unban_email.php" class="btn btn-link p-0">Ripristina una email</a>
+            
         <?php else: ?>
             <?php
                 $query = "SELECT cast(sum(Exp) as signed) esperienza FROM lotte_combattute JOIN lotte ON (lotte_combattute.Id_lotta = lotte.Id) WHERE lotte_combattute.Id_utente = :id AND lotte_combattute.IsVinta = 1";
