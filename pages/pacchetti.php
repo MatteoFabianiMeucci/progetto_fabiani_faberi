@@ -152,9 +152,10 @@
                 <?php $carte = $_SESSION['carte_pacchetto']; ?>
                 <h1>CARTE TROVATE</h1>
                 <?php for($i = 0; $i < count($carte); $i++):?>
-                    <div class="col-md-4 mb-4 text-center">
+                    <div class="col-md-4 mb-4 text-center card-shower">
                         <div>
-                            <img src="<?=$carte[$i]['Immagine']?>" alt="" class="displayed_cards img-fluid">
+                            <!-- GG  -->
+                            <img src="../images/cards/back.webp" data-card='<?=$carte[$i]['Immagine']?>' alt="" class="displayed_cards img-fluid">
                             <?php
                                 $id_carta = $carte[$i]['Id'];
                                 $query = "SELECT * FROM Carte_Possedute WHERE Id_utente = :id_utente AND Id_carta = :id_carta";
@@ -173,7 +174,7 @@
                                         $result->execute();
                                     ?>
                                     <?php else:?>
-                                        <div class="card shadow-sm mx-auto my-2 w-75 text-center">
+                                        <div data-card=<?=$carte[$i]['Immagine']?> class="hide-desc card shadow-sm mx-auto my-2 w-75 text-center">
                                             <div class="card-body">
                                                 <p class="card-text">Possiedi gia' <?=$carte[$i]["Nome"]?></p>
                                             </div>
@@ -195,6 +196,7 @@
         
     <?php endif; ?>
     <!-- Bootstrap JS Bundle -->
+    <script src="../js/show-cards.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
