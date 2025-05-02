@@ -50,24 +50,26 @@
         </div>
     </div>
 
-    <div>
-        <form action="./delete_user.php" method="post">
-        <label><b>Digita l'username dell'utente da eliminare</b></label>
-            <br>
-            <br>
-            <label>Username</label>
-            <br>
-            <input type="text" name = "username" required>
+    <div class="container my-5">
+        <form action="./delete_user.php" method="post" class="p-4 border rounded shadow-sm bg-light">
+            <h4 class="mb-4 text-center">Elimina un utente</h4>
+            
+            <div class="mb-3">
+                <label for="username" class="form-label"><b>Digita l'username dell'utente da eliminare</b></label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
             
             <?php if(isset($_GET['err']) && $_GET['err'] == 404): ?>
-                <label><b>!!! Utente non trovato, ritenta !!!</b></label>
+                <div class="alert alert-danger" role="alert">
+                    !!! Utente non trovato, ritenta !!!
+                </div>
             <?php elseif(isset($_GET['err']) && $_GET['err'] == 500): ?>
-                <label><b>!!! Si è verificato un problema, ritenta !!!</b></label>
+                <div class="alert alert-warning" role="alert">
+                    !!! Si è verificato un problema, ritenta !!!
+                </div>
             <?php endif; ?>
-
-            <br>
-            <br>
-            <input type="submit" value="Invia">
+            
+            <button type="submit" class="btn btn-primary w-100">Invia</button>
         </form>
     </div>
     <!-- Bootstrap JS Bundle -->
