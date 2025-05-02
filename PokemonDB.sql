@@ -6,6 +6,7 @@ CREATE TABLE Utenti (
     Username VARCHAR(30) NOT NULL,
     Password VARCHAR(64) NOT NULL,
     Email VARCHAR(264),
+    Immagine VARCHAR(300),
     IsAdmin BOOL
 );
 
