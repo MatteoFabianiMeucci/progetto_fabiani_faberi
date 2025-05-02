@@ -21,6 +21,20 @@
     margin: 1vh 1vh 0 0;
 }
 
+@keyframes showCard {
+    0% {transform: rotateY(0deg);}
+    50% {transform: rotateY(90deg); scale: 110%;}
+    100% {transform: rotateY(0deg);}
+}
+
+.hide-desc{
+    display: none !important;
+}
+
+.shown_card{
+    animation: showCard 1s linear;
+}
+
 .sezione {
     margin-bottom: 30px;
     background: #f9f9f9;
