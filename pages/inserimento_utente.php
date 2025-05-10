@@ -24,7 +24,7 @@
                     if($result->execute()){
                         $usernames = $result->fetchAll(PDO::FETCH_ASSOC);
                         if (count($usernames) == 0) {
-                            $query = "INSERT INTO Utenti (Username, Password, Email, IsAdmin) VALUES (:username, :password, :email, 0)";
+                            $query = "INSERT INTO Utenti (Username, Password, Email, IsAdmin, Immagine) VALUES (:username, :password, :email, 0, '../images/user_icons/default.jpg')";
                             $result = $connection->prepare($query);
                             $result->bindValue(":username", $username);
                             $result->bindValue(":password", $password);

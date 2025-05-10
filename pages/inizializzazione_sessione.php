@@ -5,5 +5,6 @@
         $_SESSION["isAdmin"] = false;
         $_SESSION["username"] = "";
         $_SESSION["id"] = -1;
+        $_SESSION["immagine"] = "";
     }
 ?>

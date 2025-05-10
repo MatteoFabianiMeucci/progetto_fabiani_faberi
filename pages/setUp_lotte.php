@@ -6,6 +6,8 @@
     }
 
     $userId = $_SESSION["id"];
+    unset($_SESSION['lotta_utente']);
+    unset($_SESSION['lotta_finita']);
 
     // ottienimento 5 carte possedute casuali
     if (!isset($_SESSION['scelte']) || count($_SESSION['scelte']) != 5) {
@@ -26,12 +28,7 @@
     }
 
     // ottenimento 5 carte casuali dal db per il nemico
-    $stmt = $connection->query("SELECT Carte.Id, Carte.Nome, Carte.PS, Carte.Immagine, Carte.Tipo, Carte.Debolezza, Carte.Attacco, a.Danno, a.Nome as nomeAttacco 
-        FROM Carte
-        JOIN Attacchi a ON Carte.Attacco = a.Id
-        ORDER BY RAND()
-        LIMIT 5");
-    $carteNemico = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $carteNemico = $_SESSION['mazzoNemico'];
 
     // crea nuova partita per l'utente loggato
     $_SESSION['lotta_utente'] = [

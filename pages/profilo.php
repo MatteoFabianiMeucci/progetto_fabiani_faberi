@@ -42,7 +42,8 @@
                     <?php if(!$_SESSION["isAdmin"]):?>
                         <li class="nav-item"><a class="nav-link" href="./pacchetti.php">Pacchetti</a></li>
                         <li class="nav-item"><a class="nav-link" href="./carte.php">Carte</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./seleziona_carte.php">Lotte</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./scegli_mazzo.php">Lotte</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./storico_lotte.php">Storico lotte</a></li>
                     <?php else:?>
                         <li class="nav-item"><a class="nav-link" href="form_delete_user.php">Elimina un utente</a></li>
                         <li class="nav-item"><a class="nav-link" href="./form_unban_email.php">Ripristina una email</a></li>
@@ -53,7 +54,36 @@
     </div>
 
     <div class="container my-4">
-        
+        <?php if (isset($_GET['err'])): ?>
+            <div class="alert alert-danger" role="alert">
+                <?php
+                    switch ($_GET['err']) {
+                        case '403':
+                            echo "Accesso negato. Effettua il login per continuare.";
+                            break;
+                        case 'invalid_image':
+                            echo "Il file caricato non è un'immagine valida.";
+                            break;
+                        case 'invalid_format':
+                            echo "Formato immagine non supportato. Usa JPG, JPEG, PNG o GIF.";
+                            break;
+                        case 'update_failed':
+                            echo "Errore durante l'aggiornamento dell'immagine del profilo.";
+                            break;
+                        case 'upload_failed':
+                            echo "Errore durante il caricamento dell'immagine.";
+                            break;
+                        default:
+                            echo "Si è verificato un errore.";
+                            break;
+                    }
+                ?>
+            </div>
+        <?php elseif (isset($_GET['success']) && $_GET['success'] === 'uploaded'): ?>
+            <div class="alert alert-success" role="alert">
+                Immagine del profilo aggiornata con successo!
+            </div>
+        <?php endif; ?>
         
         <?php if($_SESSION["isAdmin"]): ?>
             <div class="card shadow-sm">
@@ -130,10 +160,24 @@
             ?>
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">Username</h5>
-                    <p class="card-text">
-                        <?=$_SESSION["username"]?>
-                    </p>
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <h5 class="card-title">Username</h5>
+                            <p class="card-text">
+                                <?=$_SESSION["username"]?>
+                            </p>
+                        </div>
+                        <div class="ms-auto text-center">
+                            <h5 class="card-title">Immagine del profilo</h5>
+                            <img src="<?=$_SESSION['immagine']?>" alt="Profile Picture" class="img_thumbnail">
+                            <br>
+                            <button id="toggleFormButton" class="btn btn-secondary mt-3">Modifica immagine</button>
+                            <form id="profilePicForm" action="./upload_profile_pic.php" method="post" enctype="multipart/form-data" class="mt-3 d-none">
+                                <input type="file" name="profile_pic" accept="image/*" class="form-control mb-2" required>
+                                <button type="submit" class="btn btn-primary">Carica immagine</button>
+                            </form>
+                        </div>
+                    </div>
                     <h5 class="card-title">Pokedollari</h5>
                     <p class="card-text">
                         <b><?=$soldi_effettivi?> <span><img src="../images/layout/currency_icon.png" alt="pokedollari" class="currency"></span></b>
@@ -158,5 +202,8 @@
     </div>
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/show_form_pfp.js"></script>
+        
+    
 </body>
 </html>
