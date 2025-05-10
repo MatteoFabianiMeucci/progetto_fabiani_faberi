@@ -66,7 +66,7 @@ $lotte = $result->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 
-    <h1>Storico delle Lotte Combattute</h1>
+    <h1 class="hs">Storico delle Lotte Combattute</h1>
 
     <?php if (count($lotte) > 0): ?>
         <!-- Ciclo per creare una tabella per ogni lotta -->
@@ -92,14 +92,14 @@ $lotte = $result->fetchAll(PDO::FETCH_ASSOC);
 
                 <?php
                     // Recupero delle carte nemiche associate alla lotta
-                    $stmtNemico = $connection->prepare("
+                    $resultNemico = $connection->prepare("
                         SELECT C.Nome, C.Immagine
                         FROM Carte_Lotte CL
                         JOIN Carte C ON CL.Id_carta = C.Id
                         WHERE CL.Id_lotta = ?
                     ");
-                    $stmtNemico->execute([$lotta['Id_lotta']]);
-                    $carteNemico = $stmtNemico->fetchAll(PDO::FETCH_ASSOC);
+                    $resultNemico->execute([$lotta['Id_lotta']]);
+                    $carteNemico = $resultNemico->fetchAll(PDO::FETCH_ASSOC);
                 ?>
 
                 <div class="text-center">

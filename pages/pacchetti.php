@@ -156,7 +156,7 @@
                     <div class="col-md-4 mb-4 text-center card-shower">
                         <div>
                             <!-- GG  -->
-                            <img src="../images/cards/back.webp" data-card='<?=$carte[$i]['Immagine']?>' alt="" class="displayed_cards img-fluid">
+                            <img src="../images/cards/back.png" data-card='<?=$carte[$i]['Immagine']?>' alt="" class="displayed_cards img-fluid">
                             <?php
                                 $id_carta = $carte[$i]['Id'];
                                 $query = "SELECT * FROM Carte_Possedute WHERE Id_utente = :id_utente AND Id_carta = :id_carta";
