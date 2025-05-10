@@ -64,6 +64,10 @@
     width: 10vw;
 }
 
+.img_thumbnail{
+    width: 5vw;
+    height: 10vh;
+}
 
 .lotta-group {
     margin-bottom: 30px;
@@ -165,35 +169,25 @@ p {
     margin: 5px 0;
 }
 
-/* Aggiungi margine tra le sezioni delle lotte */
 .sezione-lotta {
-    margin-bottom: 30px; /* Distanza tra una lotta e l'altra */
+    margin-bottom: 30px; 
 }
 
-/* Regole per la navbar */
 .navbar {
-    margin-bottom: 20px; /* Distanza tra la navbar e il contenuto */
+    margin-bottom: 20px;
 }
 
-/* Immagini delle carte nemiche */
 .img-fluid {
     width: 80%;
     height: auto;
     margin-bottom: 10px;
 }
 
-/* Aggiungi un po' di stile alle intestazioni */
 h1, h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-/* Aggiungi margine inferiore ai paragrafi */
 p {
     margin-bottom: 20px;
-}
-
-.img_thumbnail{
-    width: 5vw;
-    height: 10vh;
 }
