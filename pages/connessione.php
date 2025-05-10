@@ -1,3 +1,3 @@
 <?php
-    $connection = new PDO("mysql:host=localhost;port=3306;dbname=PokemonDB", "root", "");
+    $connection = new PDO("mysql:host=localhost;port=3356;dbname=PokemoDB", "root", "");
 ?>

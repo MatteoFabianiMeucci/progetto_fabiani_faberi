@@ -1,17 +1,22 @@
 <?php
 
     require_once("inizializzazione_sessione.php");
-                require_once("./connessione.php");
-                if(!$_SESSION["isLogged"]){
-                header("Location: http://localhost/progetto_fabiani_faberi/pages/sign_up.php");
-                }
+    require_once("./connessione.php");
+    if(!$_SESSION["isLogged"]){
+        header("Location: http://localhost/progetto_fabiani_faberi/pages/sign_up.php");
+    }
     if (!isset($_SESSION['lotta_utente'])) {
         header("Location: http://localhost/progetto_fabiani_faberi/pages/setUp_lotte.php");
+    }
+
+    if(!isset($_SESSION['sceltaN'])){
+        header("Location: http://localhost/progetto_fabiani_faberi/pages/scegli_mazzo.php");
     }
 
     $lotta = &$_SESSION['lotta_utente'];
     $utente = &$lotta['utente'];
     $nemico = &$lotta['nemico'];
+    $lotta_finita = isset($_SESSION['lotta_finita']);
 
     $messaggio = "";
 
@@ -24,12 +29,13 @@
     }
 
     // attacco
-    if (isset($_POST['attacca'])) {
+    if (isset($_POST['attacca']) && !$lotta_finita){
         $dannoUtente = calcolaDanno($utente['attiva'], $nemico['attiva']);
         $dannoNemico = calcolaDanno($nemico['attiva'], $utente['attiva']);
-
-        $nemico['ps'][$nemico['attiva']['Id']] -= $dannoUtente;
-        $utente['ps'][$utente['attiva']['Id']] -= $dannoNemico;
+        
+        $nemico['ps'][$nemico['attiva']['Id']] = max(0, $nemico['ps'][$nemico['attiva']['Id']] - $dannoUtente);
+        $utente['ps'][$utente['attiva']['Id']] = max(0, $utente['ps'][$utente['attiva']['Id']] - $dannoNemico);
+        
 
         $messaggio = "Hai usato l'attacco: " . $utente['nomeAttacco'][$utente['attiva']['Id']] . " infliggendo $dannoUtente danni. <br> Il nemico ha usato l'attacco: " . $nemico['nomeAttacco'][$nemico['attiva']['Id']] . " infliggendo $dannoNemico danni.";
        
@@ -41,6 +47,8 @@
                 $nemico['attiva'] = array_shift($nemico['panchina']);
             } else {
                 $messaggio .= "<br> Hai VINTO!";
+                $_SESSION['lotta_finita'] = true;
+                header("Location: http://localhost/progetto_fabiani_faberi/pages/lotta_completa.php");
             }
         }
 
@@ -50,12 +58,14 @@
                 $utente['attiva'] = array_shift($utente['panchina']);
             } else {
                 $messaggio .= "<br> Hai PERSO!";
+                $_SESSION['lotta_finita'] = false;
+                header("Location: http://localhost/progetto_fabiani_faberi/pages/lotta_completa.php");
             }
         }
     }
 
     // cambio carta
-    if (isset($_POST['cambia']) && isset($_POST['index'])) {
+    if (isset($_POST['cambia']) && isset($_POST['index']) && !$lotta_finita) {
         $i = (int)$_POST['index'];
         if (isset($utente['panchina'][$i])) {
             $vecchia = $utente['attiva'];
@@ -100,7 +110,8 @@
                     <?php if(!$_SESSION["isAdmin"]):?>
                         <li class="nav-item"><a class="nav-link" href="./pacchetti.php">Pacchetti</a></li>
                         <li class="nav-item"><a class="nav-link" href="./carte.php">Carte</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./seleziona_carte.php">Lotte</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./scegli_mazzo.php">Lotte</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./storico_lotte.php">Storico lotte</a></li>
                     <?php else:?>
                         <li class="nav-item"><a class="nav-link" href="form_delete_user.php">Elimina un utente</a></li>
                         <li class="nav-item"><a class="nav-link" href="./form_unban_email.php">Ripristina una email</a></li>

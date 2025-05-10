@@ -51,7 +51,8 @@
                     <?php if(!$_SESSION["isAdmin"]):?>
                         <li class="nav-item"><a class="nav-link" href="./pacchetti.php">Pacchetti</a></li>
                         <li class="nav-item"><a class="nav-link" href="./carte.php">Carte</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./seleziona_carte.php">Lotte</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./scegli_mazzo.php">Lotte</a></li>
+                        <li class="nav-item"><a class="nav-link" href="./storico_lotte.php">Storico lotte</a></li>
                     <?php else:?>
                         <li class="nav-item"><a class="nav-link" href="form_delete_user.php">Elimina un utente</a></li>
                         <li class="nav-item"><a class="nav-link" href="./form_unban_email.php">Ripristina una email</a></li>
@@ -105,10 +106,11 @@
 
         <h2>Le tue carte:</h2>
         <?php
-            $query = "SELECT * FROM carte 
-                      JOIN carte_possedute ON carte.Id = carte_possedute.Id_carta 
-                      JOIN utenti ON carte_possedute.id_utente = utenti.Id 
-                      WHERE utenti.username = :username";
+            $query = "SELECT carte.Immagine 
+                    FROM carte 
+                    JOIN carte_possedute ON carte.Id = carte_possedute.Id_carta 
+                    JOIN utenti ON carte_possedute.id_utente = utenti.Id 
+                    WHERE utenti.username = :username";
             $result = $connection->prepare($query);
             $result->bindValue(':username', $username);
             $result->execute();
