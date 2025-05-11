@@ -67,39 +67,57 @@
                     Clicca sulla pokeball in alto a destra per accedere al menu.
                 </div>
         <?php endif; ?>
-    <div class = "tutorial">
-        <div class="sezione">
-            <h2>Introduzione</h2>
-            <p>Benvenuto nel nostro fantastico mondo di carte e avventure! Qui puoi:</p>
-            <ul>
-                <li>Collezionare carte uniche e straordinarie.</li>
-                <li>Partecipare a lotte epiche.</li>
-                <li>Personalizzare il tuo profilo e monitorare i tuoi progressi.</li>
-            </ul>
-            <p>Preparati a immergerti in un'esperienza incredibile!</p>
-            <img src="../images/cards/11.webp" class="displayed_cards" alt="Carta esempio">
+    <div class = "tutorial container">
+        <div class="row align-items-center mb-4">
+            <div class="col-md-8">
+                <div class="sezione">
+                    <h2>Introduzione</h2>
+                    <p>Benvenuto nel nostro fantastico mondo di carte e avventure! Qui puoi:</p>
+                    <ul>
+                        <li>Collezionare carte uniche e straordinarie.</li>
+                        <li>Partecipare a lotte epiche.</li>
+                        <li>Personalizzare il tuo profilo e monitorare i tuoi progressi.</li>
+                    </ul>
+                    <p>Preparati a immergerti in un'esperienza incredibile!</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <img src="../images/cards/45.webp" class="displayed_cards img-fluid" alt="Carta esempio">
+            </div>
         </div>
-        <div class="sezione">
-            <h2>1. Come ottenere le carte</h2>
-            <p>Collezionare carte è semplice e divertente:</p>
-            <ol>
-                <li>Visita la sezione <a href="./pacchetti.php">Pacchetti</a>.</li>
-                <li>Apri un pacchetto e inizia a collezionare carte, il primo te lo regaliamo noi.</li>
-                <li>Guarda la tua collezione crescere nella pagina delle <a href="./carte.php">carte</a>!</li>
-            </ol>
-            <p>Ogni nuova carta e' un passo in più verso il collezionarle tutte!</p>
-            <img src="../images/cards/11.webp" class="displayed_cards" alt="Carta esempio">
+        <div class="row align-items-center mb-4">
+            <div class="col-md-8">
+                <div class="sezione">
+                    <h2>1. Come ottenere le carte</h2>
+                    <p>Collezionare carte è semplice e divertente:</p>
+                    <ol>
+                        <li>Visita la sezione <a href="./pacchetti.php">Pacchetti</a>.</li>
+                        <li>Apri un pacchetto e inizia a collezionare carte, il primo te lo regaliamo noi.</li>
+                        <li>Guarda la tua collezione crescere nella pagina delle <a href="./carte.php">carte</a>!</li>
+                    </ol>
+                    <p>Ogni nuova carta e' un passo in più verso il collezionarle tutte!</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <img src="../images/cards/47.webp" class="displayed_cards img-fluid" alt="Carta esempio">
+            </div>
         </div>
-        <div class="sezione">
-            <h2>2. Come Fare le Lotte</h2>
-            <p>Le lotte sono il cuore dell'azione! Ecco come iniziare:</p>
-            <ol>
-                <li>Vai nella sezione <a href="./seleziona_carte.php">Lotte</a>.</li>
-                <li>Scegli una lotta dalla lista, seleziona le tue carte e... battaglia!</li>
-                <li>Usa strategia e abilità per vincere e ottenere ricompense.</li>
-            </ol>
-            <p>Ogni battaglia è un'esperienza unica. Completa tutte le lotte e guadagna esperienza per salire di livello e pokedollari per aprire nuovi pacchetti!</p>
-            <img src="../images/cards/11.webp" class="displayed_cards" alt="Carta esempio">
+        <div class="row align-items-center mb-4">
+            <div class="col-md-8">
+                <div class="sezione">
+                    <h2>2. Come Fare le Lotte</h2>
+                    <p>Le lotte sono il cuore dell'azione! Ecco come iniziare:</p>
+                    <ol>
+                        <li>Vai nella sezione <a href="./seleziona_carte.php">Lotte</a>.</li>
+                        <li>Scegli una lotta dalla lista, seleziona le tue carte e... battaglia!</li>
+                        <li>Usa strategia e abilità per vincere e ottenere ricompense.</li>
+                    </ol>
+                    <p>Ogni battaglia è un'esperienza unica. Completa tutte le lotte e guadagna esperienza per salire di livello e pokedollari per aprire nuovi pacchetti!</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <img src="../images/cards/44.webp" class="displayed_cards img-fluid" alt="Carta esempio">
+            </div>
         </div>
         <div class="sezione">
             <h2>Domande Frequenti (FAQ)</h2>

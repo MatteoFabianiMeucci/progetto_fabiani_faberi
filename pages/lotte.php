@@ -83,12 +83,6 @@
     <title>Lotta Pokémon</title>
     <link rel="stylesheet" href="../styles/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .card-img-top {
-            height: 200px;
-            object-fit: contain;
-        }
-    </style>
 </head>
 <body class="bg-light">
 <nav class="navbar navbar-dark bg-primary mb-4">
@@ -103,11 +97,11 @@
 <div class="container">
     <h1 class="text-center mb-4">Lotta Pokémon – <?= htmlspecialchars($_SESSION["username"]) ?></h1>
 
-    <div class="row mb-4">
+    <div class="row mb-4 d-flex align-items-stretch">
         <!-- Carta Giocatore -->
         <div class="col-md-6">
-            <div class="card text-center shadow-sm">
-                <h2>Carta del nemico:</h2>
+            <div class="card text-center shadow-sm h-100">
+                <h2>La tua carta:</h2>
                 <img src="<?= $utente['attiva']['Immagine'] ?>" class="card-img-top" alt="Tua carta attiva">
                 <div class="card-body">
                     <h5 class="card-title"><?= $utente['attiva']['Nome'] ?></h5>
@@ -121,7 +115,7 @@
 
         <!-- Carta Nemico -->
         <div class="col-md-6">
-            <div class="card text-center shadow-sm">
+            <div class="card text-center shadow-sm h-100">
                 <h2>Carta del nemico:</h2>
                 <img src="<?= $nemico['attiva']['Immagine'] ?>" class="card-img-top" alt="Carta nemico attiva">
                 <div class="card-body">
@@ -138,8 +132,8 @@
     <?php endif; ?>
 
     <!-- Cambio con Panchina -->
-    <h3>Cambia con una carta dalla Panchina:</h3>
-    <div class="d-flex flex-wrap gap-2">
+    <h3>Cambia con una carta dalla panchina:</h3>
+    <div class="d-flex flex-wrap gap-2 mb-4">
         <?php foreach ($utente['panchina'] as $i => $carta): ?>
             <?php if ($utente['ps'][$carta['Id']] > 0): ?>
                 <form method="post">

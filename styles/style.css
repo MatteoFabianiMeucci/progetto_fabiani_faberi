@@ -97,7 +97,6 @@ button[type="submit"]:hover {
 
 body {
     font-family: Arial, sans-serif;
-    padding: 20px;
     background-color: #f2efef;
 }
 
@@ -153,4 +152,9 @@ th, td {
 }
 .hs{
     text-align: center;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: contain;
 }

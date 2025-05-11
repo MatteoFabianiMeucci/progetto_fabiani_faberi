@@ -131,7 +131,7 @@ if (!empty($carteGiocatore)) {
     <?php endif; ?>
 
     <hr>
-    <a href="storico_lotte.php">Vedi storico lotte combattute</a>
+    <a href="storico_lotte.php" class="btn btn-primary mb-3">Vedi storico lotte combattute</a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
