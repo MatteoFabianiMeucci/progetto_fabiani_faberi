@@ -38,9 +38,9 @@ $carteNemico = $resultNemico->fetchAll(PDO::FETCH_ASSOC);
 $carte = [];
 if (!empty($carteGiocatore)) {
     $temporaneo = implode(',', array_fill(0, count($carteGiocatore), '?'));
-    $resultCarte = $connection->prepare("SELECT Nome FROM Carte WHERE Id IN ($temporaneo)");
+   $resultCarte = $connection->prepare("SELECT Nome, Immagine FROM Carte WHERE Id IN ($temporaneo)");
     $resultCarte->execute($carteGiocatore);
-    $carte = $resultCarte->fetchAll(PDO::FETCH_COLUMN);
+    $carte = $resultCarte->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
 
@@ -90,16 +90,21 @@ if (!empty($carteGiocatore)) {
             </ul>
         </div>
     </div>
-    <h1>Resoconto Lotta</h1>
+    <h1>Resoconto lotta</h1>
     
     <?php if ($lotta): ?>
         <p><strong>Data:</strong> <?= htmlspecialchars($lotta['Data']) ?></p>
         <p><strong>Esito:</strong> <?= $lotta['IsVinta'] ? "Vittoria" : "Sconfitta" ?></p>
+        <?php if ($lotta['IsVinta']): ?>
         <p><strong>Esperienza guadagnata:</strong> <?= htmlspecialchars($lotta['Exp']) ?></p>
         <p><strong>Premio:</strong> <?= htmlspecialchars($lotta['Premio']) ?></p>
+        <?php else: ?>
+            <p><strong>Esperienza guadagnata:</strong> 0</p>
+            <p><strong>Premio:</strong> 0</p>
+        <?php endif; ?>
         
         <!-- Dettagli del mazzo nemico -->
-        <h2>Mazzo Avversario</h2>
+        <h2>Mazzo avversario</h2>
         <div class="nemico-carte">
             <?php foreach ($carteNemico as $carta): ?>
                 <div class="card-container">
@@ -110,12 +115,16 @@ if (!empty($carteGiocatore)) {
         </div>
 
         <!-- Dettagli delle carte usate dal giocatore -->
-        <h2>Carte Utilizzate da Te</h2>
-        <ul>
-            <?php foreach ($carte as $nomeCarta): ?>
-                <li><?= htmlspecialchars($nomeCarta) ?></li>
+        <h2>Il tuo mazzo</h2>
+        <div class="tuo-mazzo-carte">
+            <?php foreach ($carte as $carta): ?>
+                <div class="card-container">
+                    <img src="<?= htmlspecialchars($carta['Immagine']) ?>" alt="<?= htmlspecialchars($carta['Nome']) ?>" height="100" />
+                    <p><?= htmlspecialchars($carta['Nome']) ?></p>
+                </div>
             <?php endforeach; ?>
-        </ul>
+        </div>
+
 
     <?php else: ?>
         <p>Lotta non trovata o dati mancanti.</p>

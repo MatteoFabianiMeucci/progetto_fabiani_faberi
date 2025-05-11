@@ -84,8 +84,13 @@ $lotte = $result->fetchAll(PDO::FETCH_ASSOC);
                     <tbody>
                         <tr>
                             <td><?= $lotta['IsVinta'] ? "Vittoria" : "Sconfitta" ?></td>
+                            <?php if (isset($_SESSION['lotta_finita']) && $_SESSION['lotta_finita'] === true): ?>
                             <td><?= htmlspecialchars($lotta['Exp']) ?></td>
                             <td><?= htmlspecialchars($lotta['Premio']) ?></td>
+                            <?php else: ?>
+                                <td>0</td>
+                                <td>Nessun premio</td>
+                            <?php endif; ?>
                         </tr>
                     </tbody>
                 </table>
