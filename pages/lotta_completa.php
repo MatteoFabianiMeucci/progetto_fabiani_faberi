@@ -9,7 +9,7 @@
     // Dati della lotta
     $userId = $_SESSION['id'];
     $idLotta = $_SESSION['sceltaN']; // ID lotta scelta
-    $vinta = $_POST['lotta_finita'] ? 1 : 0; // true = vittoria, false = sconfitta
+    $vinta = $_SESSION['lotta_finita'] ? 1 : 0; // true = vittoria, false = sconfitta
     $dataOra = date('Y-m-d H:i:s');
 
     // Inserimento della lotta come completata
