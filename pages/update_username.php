@@ -1,9 +1,11 @@
 <?php
     require_once("./connessione.php");
     require_once("./inizializzazione_sessione.php");
-    if (!isset($_POST["username"]) || !$_SESSION["isLogged"])
+    if(!$_SESSION["isLogged"]){
         header("Location: http://localhost/progetto_fabiani_faberi/pages/login.php?err=403");
-    else {
+    }elseif($_SESSION["isAdmin"]){
+        header("Location: http://localhost/progetto_fabiani_faberi/pages/?err=admin");
+    }else {
         $username = $_POST["username"];
 
         $query = "SELECT * FROM Utenti WHERE Username = :username";

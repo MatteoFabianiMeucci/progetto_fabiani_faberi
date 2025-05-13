@@ -13,9 +13,12 @@
     <?php
         require_once("./connessione.php");
         require_once("./inizializzazione_sessione.php");
-        if(!$_SESSION["isLogged"])
+        if(!$_SESSION["isLogged"]){
             header("Location: http://localhost/progetto_fabiani_faberi/pages/login.php?err=403");
-        
+        }
+        if($_SESSION["isAdmin"]){
+            header("Location: http://localhost/progetto_fabiani_faberi/pages/?err=admin");
+        }
         
     ?>
     <nav class="navbar navbar-dark bg-primary">
@@ -57,8 +60,13 @@
     <?php if(!isset($_SESSION['carte_pacchetto'])): ?>
         <div>
             <?php if(isset($_GET['err']) && $_GET['err'] == 404):?>
-                <label><b>!!! Pacchetto inesistente, ritenta !!!</b></label>
-                <br>
+                <div class="alert alert-danger" role="alert">
+                    <b>Pacchetto inesistente, ritenta</b>
+                </div>
+            <?php elseif(isset($_GET['err']) && $_GET['err'] == 500): ?>
+                <div class="alert alert-danger" role="alert">
+                    <b>Errore del server, riprova più tardi</b>
+                </div>
             <?php endif;?>
             <?php 
                 $query = "SELECT sum(Premio) soldi FROM lotte_combattute JOIN lotte ON (lotte_combattute.Id_lotta = lotte.Id) WHERE lotte_combattute.IsVinta = 1 AND lotte_combattute.Id_utente = :id";

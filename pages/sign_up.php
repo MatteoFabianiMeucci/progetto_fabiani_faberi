@@ -12,7 +12,7 @@
         require_once("./inizializzazione_sessione.php");
            
         if($_SESSION["isLogged"])
-            header("Location: http://localhost/progetto_fabiani_faberi/pages/");
+            header("Location: http://localhost/progetto_fabiani_faberi/pages/?err=logged");
     ?>
 
 <nav class="navbar navbar-dark bg-primary">

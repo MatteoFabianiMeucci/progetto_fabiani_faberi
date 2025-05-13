@@ -2,9 +2,11 @@
 require_once("inizializzazione_sessione.php");
 require_once("./connessione.php");
 
-if (!$_SESSION["isLogged"]) {
-    header("Location: ./login.php");
-    exit;
+if(!$_SESSION["isLogged"]){
+    header("Location: http://localhost/progetto_fabiani_faberi/pages/login.php?err=403");
+    }
+if($_SESSION["isAdmin"]){
+    header("Location: http://localhost/progetto_fabiani_faberi/pages/?err=admin");
 }
 
 $userId = $_SESSION['id'];

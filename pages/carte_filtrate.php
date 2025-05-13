@@ -14,37 +14,40 @@
         require_once("connessione.php");
 
         if (!$_SESSION["isLogged"]) {
-            header("Location: http://localhost/progetto_fabiani_faberi/pages/sign_up.php");
+            header("Location: http://localhost/progetto_fabiani_faberi/pages/login.php?err=403");
+        }elseif($_SESSION["isAdmin"]){
+            header("Location: http://localhost/progetto_fabiani_faberi/pages/?err=admin");
         }
-
         $conditions = [];
         $params = [];
 
-        switch($_POST['carte_non_possedute']){
-            case 'possedute':
-                $conditions[] = " EXISTS (
-                    SELECT * 
-                    FROM carte 
-                    JOIN carte_possedute ON carte.Id = carte_possedute.Id_carta 
-                    JOIN utenti ON carte_possedute.id_utente = utenti.Id 
-                    WHERE utenti.username = :username
-                    AND carte.Id = c.Id
-                )";
-                $params[':username'] = $_SESSION['username'];
-                break;
-            case 'mancanti':
-                $conditions[] = " NOT EXISTS (
-                    SELECT * 
-                    FROM carte 
-                    JOIN carte_possedute ON carte.Id = carte_possedute.Id_carta 
-                    JOIN utenti ON carte_possedute.id_utente = utenti.Id 
-                    WHERE utenti.username = :username
-                    AND carte.Id = c.Id
-                )";
-                $params[':username'] = $_SESSION['username'];
-                break;
-            default:
-                break;
+        if(isset($_POST['carte_non_possedute'])){
+            switch($_POST['carte_non_possedute']){
+                case 'possedute':
+                    $conditions[] = " EXISTS (
+                        SELECT * 
+                        FROM carte 
+                        JOIN carte_possedute ON carte.Id = carte_possedute.Id_carta 
+                        JOIN utenti ON carte_possedute.id_utente = utenti.Id 
+                        WHERE utenti.username = :username
+                        AND carte.Id = c.Id
+                    )";
+                    $params[':username'] = $_SESSION['username'];
+                    break;
+                case 'mancanti':
+                    $conditions[] = " NOT EXISTS (
+                        SELECT * 
+                        FROM carte 
+                        JOIN carte_possedute ON carte.Id = carte_possedute.Id_carta 
+                        JOIN utenti ON carte_possedute.id_utente = utenti.Id 
+                        WHERE utenti.username = :username
+                        AND carte.Id = c.Id
+                    )";
+                    $params[':username'] = $_SESSION['username'];
+                    break;
+                default:
+                    break;
+            }
         }
         
         if (!empty($_POST['nome'])) {

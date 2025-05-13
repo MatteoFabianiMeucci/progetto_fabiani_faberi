@@ -2,9 +2,11 @@
 require_once("./connessione.php");
 require_once("./inizializzazione_sessione.php");
 
-if (!$_SESSION['isLogged']) {
-    header("Location: ./login.php?err=403");
-    exit;
+if(!$_SESSION["isLogged"]){
+    header("Location: http://localhost/progetto_fabiani_faberi/pages/login.php?err=403");
+}
+if($_SESSION["isAdmin"]){
+    header("Location: http://localhost/progetto_fabiani_faberi/pages/?err=admin");
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['profile_pic'])) {
