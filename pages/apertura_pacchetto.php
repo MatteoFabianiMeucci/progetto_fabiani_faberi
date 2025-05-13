@@ -37,8 +37,7 @@
                 $min_carta_comune = 26;
                 $max_carta_comune = 57;
                 break;
-        
-                break;
+                
             default:
                 header("Location: http://localhost/progetto_fabiani_faberi/pages/pacchetti.php?err=404");
                 break;
