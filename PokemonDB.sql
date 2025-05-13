@@ -98,12 +98,13 @@ INSERT INTO Tipo(Tipo) VALUES
 ('Lotta'),
 ('Psico'),
 ('Oscurità'),
-('Acqua');
+('Acqua'),
+('Drago');
 
 INSERT INTO Pacchetti(Nome, Immagine, Costo) VALUES
 ('Ossidiana Infuocata', '../images/packs/01.jpg', 10),
-('151', '../images/packs/02.jpg', 15) -- https://vivatcg.com/categoria-prodotto/carte-singole/carte-singole-scarlatto-e-violetto/carte-singole-151/?jsf=woocommerce-archive&pagenum=3
-;
+('151', '../images/packs/02.jpg', 15), -- https://vivatcg.com/categoria-prodotto/carte-singole/carte-singole-scarlatto-e-violetto/carte-singole-151/?jsf=woocommerce-archive&pagenum=3
+('Tempesta Argentata', '../images/packs/03.jpeg', 20);
 
 INSERT INTO Attacchi(Nome, Danno, Tipo) VALUES
 ('Freccia Implacabile', 130, 1), -- 1
@@ -159,7 +160,7 @@ INSERT INTO Attacchi(Nome, Danno, Tipo) VALUES
 ('Parassiseme', 20, 1),
 ('Mangifoglia', 10, 1),
 ('Volo di Addio', 60, 1),
-('Colemorso', 20, 1),
+('Colemorso', 30, 1),
 ('Pallaspore', 20, 1),
 ('Soffiofuoco', 30, 2),
 ('Super Scottata', 20, 2),
@@ -184,8 +185,59 @@ INSERT INTO Attacchi(Nome, Danno, Tipo) VALUES
 ('Gas Sospetto', 20, 6),
 ('Pressa Appiccicosa', 10, 6),
 ('Fangobomba', 180, 6),
-('Morso', 10, 6); -- 79
-
+('Morso', 10, 6), -- 79
+('Dynascoppio', 180, 8), -- rayquaza in poi 80
+('Gigapolverizzazione', 220, 8), 
+('Onda Soave', 60, 7),
+('Fiammata Bianca', 200, 2),
+('Aerotuffo', 130, 8),
+('Fame Immprovvisa', 90, 5),
+('Magicolpo', 110, 5),
+('Dragartigli', 120, 8),
+('Vento Distruttivo', 90, 7),
+('Tifone Aereo', 190, 6),
+('Gigatifone', 240, 6),
+('Solarraggio', 120, 1),  -- 90
+('Astro Avvolgente', 190, 1),
+('Astro Neveargento', 70, 7),
+('Blocco Tentacolare', 110, 7),
+('Elettromuro', 100, 3),
+('Dynafolgore Tonante', 220, 3),
+('Serramascella', 100, 5),
+('Simbolo di Vittoria', 90, 5),
+('Dardopietra', 90, 4),
+('Torbaspalla', 220, 4), -- 100
+('Dragolaser', 130, 8), -- 100
+('Fiammabaleno', 100, 2), 
+('Perforare', 50, 1),
+('Morso', 50, 1),
+('Colpo Aroma', 90, 1),
+('Salta su', 30, 2),
+('Corteo Fiammeggiante', 60, 2),
+('Sgretolenergia', 100, 2),
+('Colpo Implacabile', 160, 2),
+('Gelo Selvaggio', 70, 7),
+('Schizzi Onda', 60, 7), --110
+('Onda Soave', 60, 7),
+('Granbocca', 130, 7),
+('Lamposfera', 120, 3),
+('Schiaffetto', 20, 3),
+('Supervolt', 160, 3),
+('Shock Statico', 40, 3),
+('Signore della Mente', 60, 5),
+('Tirar Giù', 30, 5),
+('Azione Cavernosa', 120, 4),
+('Acrobazia', 30, 4), -- 120 
+('Caduta Fossili', 30, 4),
+('Trappola0', 10, 4),
+('Beccata', 10, 6),
+('Ali Spietate', 120, 6),
+('Pugno Rotante', 30, 6),
+('Tuffomontante', 120, 6),
+('Settima Eco', 70, 8),
+('Attacco Veloce', 70, 8),
+('Aliante', 30, 8),
+('Schianto', 30, 8); -- 130
 
 INSERT INTO Carte(Nome, PS, Tipo, Immagine, Debolezza, Pacchetto, Attacco) VALUES
 ('Decidueye Ex', 320, 1, '../images/cards/01.webp', 2, 1, 1),
@@ -223,7 +275,7 @@ INSERT INTO Carte(Nome, PS, Tipo, Immagine, Debolezza, Pacchetto, Attacco) VALUE
 ('Cleffa', 30, 5, '../images/cards/33.webp', 6, 1, 29),
 ('Togepi', 50, 5, '../images/cards/34.webp', 6, 1, 30),
 ('Togetic', 90, 5, '../images/cards/35.webp', 6, 1, 31),
-('Mawile', 100, 6, '../images/cards/36.webp', 6, 1, 32),
+('Mawile', 100, 5, '../images/cards/36.webp', 6, 1, 32),
 ('Darkrai', 130, 6, '../images/cards/37.webp', 1, 1, 33),
 ('Inkay', 60, 6, '../images/cards/38.webp', 1, 1, 34),
 ('Diglett', 50, 4, '../images/cards/39.webp', 1, 1, 35),
@@ -244,7 +296,7 @@ INSERT INTO Carte(Nome, PS, Tipo, Immagine, Debolezza, Pacchetto, Attacco) VALUE
 ('Zapdos Ex', 200, 3, '../images/cards/53.webp', 3, 2, 49),
 ('Zapdos Ex', 200, 3, '../images/cards/54.webp', 3, 2, 49),
 ('Mew Ex', 180, 5, '../images/cards/55.webp', 6, 2, 46),
-('Dragonair', 100, 7, '../images/cards/56.webp', 3, 2, 50),
+('Dragonair', 100, 8, '../images/cards/56.webp', 3, 2, 50),
 ('Venusaur Ex', 340, 1, '../images/cards/57.webp', 2, 2, 40),
 ('Bulbasaur', 70, 1, '../images/cards/58.webp', 2, 2, 51),
 ('Caterpie', 50, 1, '../images/cards/59.webp', 2, 2, 52),
@@ -274,50 +326,156 @@ INSERT INTO Carte(Nome, PS, Tipo, Immagine, Debolezza, Pacchetto, Attacco) VALUE
 ('Koffing', 60, 6, '../images/cards/83.webp', 4, 2, 76),
 ('Grimer', 80, 6, '../images/cards/84.webp', 4, 2, 77),
 ('Muk', 150, 6, '../images/cards/85.webp', 4, 2, 78),
-('Zubat', 40, 6, '../images/cards/86.webp', 3, 2, 79);
+('Zubat', 40, 6, '../images/cards/86.webp', 3, 2, 79),
+
+('Rayquaza Vmax', 320, 8, '../images/cards/87.webp', 6, 3, 80),  -- terzo pacchetto
+('Duraludon Vmax', 330, 8, '../images/cards/88.webp', 6, 3, 81),
+('Milotic', 130, 7, '../images/cards/89.webp', 3, 3, 82),
+('Reshiram V', 220, 2, '../images/cards/90.webp', 7, 3, 83),
+('Lugia V', 220, 8, '../images/cards/91.webp', 3, 3, 84),
+('Lugia V', 220, 8, '../images/cards/92.webp', 3, 3, 84),
+('Mawile Vastro', 260, 5, '../images/cards/93.webp', 8, 3, 85),
+('Gardevoir', 150, 5, '../images/cards/94.webp', 8, 3, 86),
+('Druddigon', 120, 8, '../images/cards/95.webp', 6, 3, 87),
+('Altaria', 110, 7, '../images/cards/96.webp', 3, 3, 88),
+('Corviknight V', 210, 6, '../images/cards/97.webp', 2, 3, 89),
+('Corviknight Vmax', 210, 6, '../images/cards/98.webp', 2, 3, 90),
+('Serperior V', 210, 1, '../images/cards/99.webp', 2, 3, 91),
+('Serperior Vmax', 270, 1, '../images/cards/100.webp', 2, 3, 92),
+('Reshiram V', 220, 2, '../images/cards/101.webp', 7, 3, 83),
+('Vulpix Vastro', 240, 7, '../images/cards/102.webp', 3, 3, 93),
+('Omastar V', 190, 7, '../images/cards/103.webp', 3, 3, 94),
+('Regieleki V', 200, 3, '../images/cards/104.webp', 4, 3, 95),
+('Regieleki Vmax', 310, 3, '../images/cards/105.webp', 4, 3, 96),
+('Mawile V', 200, 5, '../images/cards/106.webp', 6, 3, 97),
+('Unown V', 180, 5, '../images/cards/107.webp', 6, 3, 98),
+('Arcanine V', 230, 4, '../images/cards/108.webp', 1, 3, 99),
+('Ursaluna V', 230, 4, '../images/cards/109.webp', 1, 3, 100),
+('Lugia V', 220, 8, '../images/cards/110.webp', 3, 3, 84),
+('Regidrago V', 220, 8, '../images/cards/111.webp', 6, 3, 101),
+('Ho-Oh V', 230, 2, '../images/cards/112.webp', 3, 3, 102),
+('Spinarak', 60, 1, '../images/cards/113.webp', 2, 3, 103), -- normal
+('Ariados', 90, 1, '../images/cards/114.webp', 2, 3, 54),
+('Durant', 90, 1, '../images/cards/115.webp', 2, 3, 104),
+('Tsareena Lucente', 140, 1, '../images/cards/116.webp', 2, 3, 105),
+('Vulpix', 70, 2, '../images/cards/117.webp', 7, 3, 106),
+('Braixen', 90, 2, '../images/cards/118.webp', 7, 3, 107),
+('Delphox', 150, 2, '../images/cards/119.webp', 7, 3, 108),
+('Talonflame', 140, 2, '../images/cards/120.webp', 7, 3, 19),
+('Articuno', 110, 7, '../images/cards/121.webp', 3, 3, 110),
+('Wailmer', 110, 7, '../images/cards/122.webp', 3, 3, 111),
+('Milotic', 130, 7, '../images/cards/123.webp', 3, 3, 112),
+('Glalie', 130, 7, '../images/cards/124.webp', 8, 3, 113),
+('Raichu', 120, 3, '../images/cards/125.webp', 4, 3, 114),
+('Chinchou', 60, 3, '../images/cards/126.webp', 4, 3, 115),
+('Lanturn', 120, 3, '../images/cards/127.webp', 4, 3, 116),
+('Emolga', 70, 3, '../images/cards/128.webp', 4, 3, 117),
+('Alakazam Lucente', 130, 5, '../images/cards/129.webp', 6, 3, 118),
+('Meditite', 60, 5, '../images/cards/130.webp', 6, 3, 68),
+('Chimecho', 70, 5, '../images/cards/131.webp', 6, 3, 119),
+('Slurpuff', 120, 5, '../images/cards/132.webp', 6, 3, 85),
+('Terrakion', 130, 4, '../images/cards/133.webp', 1, 3, 120),
+('Hawlucha', 80, 4, '../images/cards/134.webp', 3, 3, 121),
+('Anorith', 90, 4, '../images/cards/135.webp', 1, 3, 122),
+('Sandygast', 80, 4, '../images/cards/136.webp', 1, 3, 123),
+('Murkrow', 60, 6, '../images/cards/137.webp', 3, 3, 124),
+('Honchkrow', 120, 6, '../images/cards/138.webp', 3, 3, 125),
+('Croagunk', 80, 6, '../images/cards/139.webp', 4, 3, 126),
+('Toxicroak', 120, 6, '../images/cards/140.webp', 4, 3, 127),
+('Noivern', 110, 8, '../images/cards/141.webp', 7, 3, 128),
+('Zygarde', 90, 8, '../images/cards/142.webp', 7, 3, 129),
+('Noibat', 60, 8, '../images/cards/143.webp', 4, 3, 130),
+('Dratini', 70, 8, '../images/cards/144.webp', 4, 3, 131);
 
 INSERT INTO Lotte (Exp, Premio) VALUES
-(100, 50),
-(150, 75),
-(200, 100),
-(120, 60),
-(180, 90),
-(250, 125),
-(350, 300);
+(100, 50),   -- 1
+(120, 60),   -- 2
+(150, 75),   -- 3
+(180, 90),   -- 4
+(220, 110),  -- 5
+(250, 125),  -- 6
+(300, 150),  -- 7
 
-INSERT INTO Carte_Lotte (Id_carta, Id_lotta) VALUES
-(5, 1),
-(6, 1),
-(29, 1),
-(30, 1),
-(79, 1),
-(3, 2),
-(11, 2),
-(21, 2),
-(22, 2),
-(63, 2),
-(4, 3),
-(24, 3),
-(25, 3),
-(67, 3),
-(68, 3),
-(1, 4),
-(16, 4),
-(17, 4),
-(58, 4),
-(60, 4),
-(9, 5),
-(10, 5),
-(39, 5),
-(40, 5),
-(74, 5),
-(7, 6),
-(49, 6),
-(76, 6),
-(77, 6),
-(78, 6),
-(48, 7),
-(11, 7),
-(12, 7),
-(36, 7),
-(37, 7);
+(100, 50),   -- 8
+(120, 60),   -- 9
+(150, 75),   -- 10
+(180, 90),   -- 11
+(220, 110),  -- 12
+(250, 125),  -- 13
+(300, 150),  -- 14
+
+(100, 50),   -- 15
+(120, 60),   -- 16
+(150, 75),   -- 17
+(180, 90),   -- 18
+(220, 110),  -- 19
+(250, 125),  -- 20
+(300, 150);  -- 21
+
+
+-- Lotta 1 (Erba) - solo normali
+INSERT INTO Carte_Lotte(Id_carta, Id_lotta) VALUES 
+(2, 1), (15, 1), (16, 1), (17, 1), (19, 1),
+
+-- Lotta 2 (Fuoco) - solo normali 
+(2, 2), (22, 2), (23, 2), (21, 2), (24, 2),
+
+-- Lotta 3 (Psico) - 1 EX 
+(29, 3), (30, 3), (31, 3), (7, 3), (32, 3), -- Clefable Ex
+
+-- Lotta 4 (Elettro) - 1 EX 
+(25, 4), (26, 4), (27, 4), (6, 4), (28, 4), -- Pawmot Ex
+
+-- Lotta 5 (Lotta) - 2 EX 
+(9, 5), (10, 5), (5, 5), (14, 5), (11, 5), -- Klawf Ex, Tyranitar Ex
+
+-- Lotta 6 (Buio) - 2 EX 
+(33, 6), (34, 6), (12, 6), (36, 6), (35, 6), -- Houndoom Ex, Mawile
+
+-- Lotta 7 (Erba) - 2 EX 
+(17, 7), (19, 7), (1, 7), (2, 7), (3, 7), -- Decidueye Ex, Toedscruel Ex
+
+
+-- Lotta 8 (Erba) - solo normali
+(51, 8), (52, 8), (53, 8), (54, 8), (55, 8),
+
+-- Lotta 9 (Fuoco) - solo normali
+(56, 9), (57, 9), (58, 9), (59, 9), (60, 9),
+
+-- Lotta 10 (Acqua) - 1 EX
+(61, 10), (62, 10), (63, 10), (47, 10), (64, 10), -- Blastoise Ex
+
+-- Lotta 11 (Psico) - 1 EX
+(68, 11), (69, 11), (70, 11), (45, 11), (71, 11), -- Alakazam Ex
+
+-- Lotta 12 (Elettro) - 2 EX
+(72, 12), (73, 12), (53, 12), (54, 12), (74, 12), -- Zapdos Ex x2
+
+-- Lotta 13 (Lotta) - 2 EX
+(66, 13), (67, 13), (47, 13), (51, 13), (65, 13), -- Golem Ex x2
+
+-- Lotta 14 (Fuoco) - 2 EX
+(56, 14), (57, 14), (42, 14), (45, 14), (43, 14), -- Ninetales Ex, Charizard Ex
+
+
+
+--- Lotta 15 (Erba) - solo normali
+(103, 15), (104, 15), (105, 15), (113, 15), (114, 15),
+
+-- Lotta 16 (Fuoco) - solo normali
+(106, 16), (107, 16), (108, 16), (109, 16), (110, 16),
+
+-- Lotta 17 (Psico) - 1 EX
+(97, 17), (119, 17), (93, 17), (94, 17), (95, 17), -- Mawile Vastro
+
+-- Lotta 18 (Acqua) - 1 EX
+(82, 18), (88, 18), (102, 18), (101, 18), (100, 18), -- Vulpix Vastro
+
+-- Lotta 19 (Elettro) - 2 EX
+(95, 19), (96, 19), (104, 19), (105, 19), (90, 19), -- Regieleki V/Vmax
+
+-- Lotta 20 (Buio) - 2 EX
+(97, 20), (98, 20), (106, 20), (118, 20), (117, 20), -- Mawile V, Alakazam Lucente
+
+-- Lotta 21 (Fuoco) - 2 EX
+(83, 21), (101, 21), (120, 21), (108, 21), (109, 21); -- Reshiram V, Delphox

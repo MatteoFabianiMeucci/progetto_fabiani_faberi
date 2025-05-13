@@ -28,6 +28,11 @@
                 $max_carta_comune = 42;
                 break;
             case 3:
+                $min_carta_ex = 0;
+                $max_carta_ex = 25;
+                $min_carta_comune = 26;
+                $max_carta_comune = 57;
+                break;
         
                 break;
             default:
