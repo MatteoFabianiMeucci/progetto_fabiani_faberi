@@ -92,6 +92,8 @@
                     case 2:
                         $soldi_effettivi += 15;
                         break;
+                    case 3:
+                        $soldi_effettivi += 20;
                     default:
                         break;
                 }

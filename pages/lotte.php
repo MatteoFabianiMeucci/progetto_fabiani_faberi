@@ -46,7 +46,6 @@
             if (count($nemico['panchina']) > 0) {
                 $nemico['attiva'] = array_shift($nemico['panchina']);
             } else {
-                $messaggio .= "<br> Hai VINTO!";
                 $_SESSION['lotta_finita'] = true;
                 header("Location: http://localhost/progetto_fabiani_faberi/pages/lotta_completa.php");
             }
@@ -57,7 +56,6 @@
             if (count($utente['panchina']) > 0) {
                 $utente['attiva'] = array_shift($utente['panchina']);
             } else {
-                $messaggio .= "<br> Hai PERSO!";
                 $_SESSION['lotta_finita'] = false;
                 header("Location: http://localhost/progetto_fabiani_faberi/pages/lotta_completa.php");
             }
