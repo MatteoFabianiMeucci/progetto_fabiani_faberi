@@ -63,46 +63,66 @@
         </div>
     </div>
 
-        <form method="post" action="carte_filtrate.php">
-            <h1>Filtra le tue carte</h1><br>
+        <div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Filtra le tue carte</h3>
+        </div>
+        <div class="card-body">
+            <form method="post" action="carte_filtrate.php">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="tipo" class="form-label">Tipo:</label>
+                        <select id="tipo" name="tipo" class="form-select">
+                            <option value="">Nessun filtro</option>
+                            <?php foreach ($tipi as $tipo): ?>
+                                <option value="<?= $tipo['Id'] ?>"><?= $tipo['Tipo'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="debolezza" class="form-label">Debolezza:</label>
+                        <select id="debolezza" name="debolezza" class="form-select">
+                            <option value="">Nessun filtro</option>
+                            <?php foreach ($tipi as $tipo): ?>
+                                <option value="<?= $tipo['Id'] ?>"><?= $tipo['Tipo'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="pacchetto" class="form-label">Pacchetto:</label>
+                        <select id="pacchetto" name="pacchetto" class="form-select">
+                            <option value="">Nessun filtro</option>
+                            <?php foreach ($pacchetti as $pacchetto): ?>
+                                <option value="<?= $pacchetto['Id'] ?>"><?= $pacchetto['Nome'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
 
-            <label>Tipo:</label>
-            <select name="tipo">
-                <option value="">Nessun filtro</option>
-                <?php foreach ($tipi as $tipo): ?>
-                    <option value="<?= $tipo['Id'] ?>"><?= $tipo['Tipo'] ?></option>
-                <?php endforeach; ?>
-            </select>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="carte_non_possedute" class="form-label">Stato di proprietà:</label>
+                        <select id="carte_non_possedute" name="carte_non_possedute" class="form-select">
+                            <option value="">Nessun filtro</option>
+                            <option value="possedute">Carte possedute</option>
+                            <option value="mancanti">Carte non possedute</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="nome" class="form-label">Nome:</label>
+                        <input id="nome" type="text" name="nome" class="form-control" placeholder="Inserisci nome carta">
+                    </div>
+                </div>
 
-            <br><label>Debolezza:</label>
-            <select name="debolezza">
-                <option value="">Nessun filtro</option>
-                <?php foreach ($tipi as $tipo): ?>
-                    <option value="<?= $tipo['Id'] ?>"><?= $tipo['Tipo'] ?></option>
-                <?php endforeach; ?>
-            </select>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Filtra</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-            <br><label>Pacchetto:</label>
-            <select name="pacchetto">
-                <option value="">Nessun filtro</option>
-                <?php foreach ($pacchetti as $pacchetto): ?>
-                    <option value="<?= $pacchetto['Id'] ?>"><?= $pacchetto['Nome'] ?></option>
-                <?php endforeach; ?>
-            </select>
-
-            <br><label>Stato di proprieta': </label>
-            <select name="carte_non_possedute">
-                <option value="">Nessun filtro</option>
-                <option value="possedute">Carte possedute</option>
-                <option value="mancanti">Carte non possedute</option>
-            </select>
-
-
-            <br><label>Nome:</label>
-            <input type="text" name="nome">
-
-            <br><input type="submit" value="Filtra">
-        </form>
 
         <h2>Le tue carte:</h2>
         <?php
