@@ -2,11 +2,13 @@
     require_once("./connessione.php");
     require_once("./inizializzazione_sessione.php");
         
-    if(!$_SESSION["isLogged"] || !$_SESSION["isAdmin"])
+    if (!$_SESSION["isLogged"]) {
         header("Location: http://localhost/progetto_fabiani_faberi/pages/login.php?err=403");
-    elseif(!isset($_POST["username"]))
+    }elseif(!$_SESSION["isAdmin"]){
+        header("Location: http://localhost/progetto_fabiani_faberi/pages?err=user");
+    }elseif(!isset($_POST["username"])){
         header("Location: http://localhost/progetto_fabiani_faberi/pages/form_delete_user.php");
-    else{
+    }else{
         $username = $_POST["username"];
 
         $query = "SELECT Id, Email FROM Utenti WHERE Username = :username";

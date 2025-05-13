@@ -13,6 +13,15 @@
     <?php
         require_once("./connessione.php");
         require_once("./inizializzazione_sessione.php");
+        $carte_tutorial = [];
+        for($i = 0; $i < 3; $i++){
+            $temp = rand(1, 144);
+            if($temp < 10){
+                $carte_tutorial[] = "0" . $temp;
+            }else{
+                $carte_tutorial[] = $temp;
+            }
+        }
     ?>
     <nav class="navbar navbar-dark bg-primary">
         <div class="container-fluid">
@@ -57,15 +66,30 @@
     </div>
     
         <?php if($_SESSION["isLogged"]): ?>
+            <?php if(isset($_GET['err']) && $_GET['err'] == 'logged'): ?>
+                <div class="alert alert-info text-center" role="alert">
+                    Hai gia' fatto l'accesso
+                </div>
+            <?php endif; ?>
+            <?php if(isset($_GET['err']) && $_GET['err'] == 'user'): ?>
+                <div class="alert alert-danger text-center" role="alert">
+                    Non hai i permessi per accedere a quella pagina
+                </div>
+            <?php endif; ?>
+            <?php if(isset($_GET['err']) && $_GET['err'] == 'admin'): ?>
+                <div class="alert alert-danger text-center" role="alert">
+                    Come amministratore non è possibile accedere a quella pagina
+                </div>
+            <?php endif; ?>
             <div class="alert alert-success text-center" role="alert">
                 <b>Benvenuto, <?=$_SESSION["username"]?>!</b>
             </div>
-            <?php else:?>
-                <div class="alert alert-danger text-center" role="alert">
-                    Non sei loggato. Effettua il login per accedere a tutte le funzionalità.
-                    <br>
-                    Clicca sulla pokeball in alto a destra per accedere al menu.
-                </div>
+        <?php else: ?>
+            <div class="alert alert-danger text-center" role="alert">
+                Non sei loggato. Effettua il login per accedere a tutte le funzionalità.
+                <br>
+                Clicca sulla pokeball in alto a destra per accedere al menu.
+            </div>
         <?php endif; ?>
     <div class = "tutorial container">
         <div class="row align-items-center mb-4">
@@ -82,7 +106,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <img src="../images/cards/45.webp" class="displayed_cards img-fluid" alt="Carta esempio">
+                <img src="../images/cards/<?=$carte_tutorial[0]?>.webp" class="displayed_cards img-fluid" alt="Carta esempio">
             </div>
         </div>
         <div class="row align-items-center mb-4">
@@ -99,7 +123,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <img src="../images/cards/47.webp" class="displayed_cards img-fluid" alt="Carta esempio">
+                <img src="../images/cards/<?=$carte_tutorial[1]?>.webp" class="displayed_cards img-fluid" alt="Carta esempio">
             </div>
         </div>
         <div class="row align-items-center mb-4">
@@ -116,7 +140,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <img src="../images/cards/44.webp" class="displayed_cards img-fluid" alt="Carta esempio">
+                <img src="../images/cards/<?=$carte_tutorial[2]?>.webp" class="displayed_cards img-fluid" alt="Carta esempio">
             </div>
         </div>
         <div class="sezione">
@@ -128,7 +152,6 @@
             </ul>
         </div>
     </div>
-    <!--DA AGGIUNGERE: CARDS (pacchetti, carte, lotte)-->
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

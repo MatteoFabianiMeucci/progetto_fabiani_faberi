@@ -17,6 +17,8 @@
 
             if (!$_SESSION["isLogged"]) {
                 header("Location: http://localhost/progetto_fabiani_faberi/pages/sign_up.php");
+            }elseif($_SESSION["isAdmin"]){
+                header("Location: http://localhost/progetto_fabiani_faberi/pages/?err=admin");
             }
 
             $username = $_SESSION['username'];

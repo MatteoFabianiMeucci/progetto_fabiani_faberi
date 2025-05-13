@@ -11,8 +11,11 @@
     <?php
         require_once("./inizializzazione_sessione.php");
            
-        if(!$_SESSION["isLogged"])
+        if(!$_SESSION["isLogged"]){
             header("Location: http://localhost/progetto_fabiani_faberi/pages/login.php?err=403");
+        }elseif($_SESSION["isAdmin"]){
+            header("Location: http://localhost/progetto_fabiani_faberi/pages/?err=admin");
+        }
     ?>
 <nav class="navbar navbar-dark bg-primary">
         <div class="container-fluid">

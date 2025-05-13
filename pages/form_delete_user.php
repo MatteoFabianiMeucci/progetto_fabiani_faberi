@@ -11,9 +11,11 @@
     <?php
         require_once("./inizializzazione_sessione.php");
            
-        if(!$_SESSION["isLogged"] || !$_SESSION["isAdmin"])
+        if (!$_SESSION["isLogged"]) {
             header("Location: http://localhost/progetto_fabiani_faberi/pages/login.php?err=403");
-    ?>
+        }elseif(!$_SESSION["isAdmin"]){
+            header("Location: http://localhost/progetto_fabiani_faberi/pages/?err=user");
+        }?>
 
 <nav class="navbar navbar-dark bg-primary">
         <div class="container-fluid">
@@ -62,11 +64,11 @@
             
             <?php if(isset($_GET['err']) && $_GET['err'] == 404): ?>
                 <div class="alert alert-danger" role="alert">
-                    !!! Utente non trovato, ritenta !!!
+                    Utente non trovato, ritenta
                 </div>
             <?php elseif(isset($_GET['err']) && $_GET['err'] == 500): ?>
                 <div class="alert alert-warning" role="alert">
-                    !!! Si è verificato un problema, ritenta !!!
+                    Si è verificato un problema, ritenta
                 </div>
             <?php endif; ?>
             

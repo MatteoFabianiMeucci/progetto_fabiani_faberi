@@ -2,9 +2,11 @@
     require_once("./connessione.php");
     require_once("./inizializzazione_sessione.php");
         
-    if(!$_SESSION["isLogged"] || !$_SESSION["isAdmin"])
+    if(!$_SESSION["isLogged"]){
         header("Location: http://localhost/progetto_fabiani_faberi/pages/login.php?err=403");
-    else{
+    }elseif(!$_SESSION["isAdmin"]){
+        header("Location: http://localhost/progetto_fabiani_faberi/pages/?err=user");
+    }else{
         $query = "SELECT * FROM Email_Bannate";
         if($result = $connection->query($query)){
             $result = $result->fetchAll();
@@ -13,7 +15,6 @@
                 $msg = ["Email" => "Non ci sono email bannate"];
                 $temp[] = $msg;
                 $_SESSION['emails'] = $temp;
-                var_dump($temp);
             }else{
                 $_SESSION['emails'] = $result;
                 var_dump($_SESSION['emails']);

@@ -12,7 +12,7 @@
         require_once("./inizializzazione_sessione.php");
            
         if($_SESSION["isLogged"])
-            header("Location: http://localhost/progetto_fabiani_faberi/pages/");
+            header("Location: http://localhost/progetto_fabiani_faberi/pages/?err=logged");
     
         
     ?>
@@ -63,6 +63,10 @@
             <?php elseif(isset($_GET['err']) && $_GET['err'] == 403): ?>
                 <div class="alert alert-warning" role="alert">
                     Devi prima fare il login
+                </div>
+            <?php elseif(isset($_GET['err']) && $_GET['err'] == 500): ?>
+                <div class="alert alert-danger" role="alert">
+                    Si e' verificato un errore
                 </div>
             <?php endif; ?>
 
