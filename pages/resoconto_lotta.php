@@ -10,10 +10,6 @@ $userId = $_SESSION['id'];
 $idLotta = $_SESSION['sceltaN'];
 $carteGiocatore = $_SESSION['scelte'];
 
-
-unset($_SESSION['lotta_finita']);
-unset($_SESSION['sceltaN']);
-
 $dataOra = date('Y-m-d H:i:s');
 
 // Recupero delle info della lotta appena conclusa
